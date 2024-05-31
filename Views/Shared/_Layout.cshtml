@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - myte</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/myte.styles.css" asp-append-version="true" />
+   
+
+    @*Fonte padrão*@
+   
+    @* <link rel="stylesheet" href="~/css/reset.css" /> *@
+    @* ======================= *@
+    @* Links Css Adicionados  *@
+    
+    
+    <link rel="stylesheet" href="~/css/global.css" />
+    <link rel="stylesheet" href="~/css/Form_View_Create.css" />
+    <link rel="stylesheet" href="~/css/home.css" />
+    <link rel="stylesheet" href="~/css/navbar.css" />
+    <link rel="stylesheet" href="~/css/departamento.css" />
+    <link rel="stylesheet" href="~/css/Funcionario.css" />
+    <link rel="stylesheet" href="~/css/TelaMyte.css" />
+    <link rel="stylesheet" href="~/css/calendar.css" />
+    <link rel="stylesheet" href="~/css/home-func.css" />
+    <link rel="stylesheet" href="~/css/User.css" />
+    <link rel="stylesheet" href="~/css/login.css" />
+
+
+    @* ======================= *@
+
+
+    <link rel="stylesheet" href="~/css/CreateWbs.css" asp-append-version="true" />
+
+
+</head>
+<body>
+ 
+    @RenderBody()
+            
+    
+
+  
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/calendar.js"></script>
+    <script src="~/js/user.js"></script>
+    <script src="~/js/navbar.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,13 @@
+﻿@*
+    Estabelecer a comunicação entre View e a Model. 
+*@
+
+@model Funcionario
+
+@{
+    ViewData["Title"] = "Registro Inserido";
+}
+
+<a class="nav-link" asp-action="Index">Listar Registros</a>
+<h1>@ViewData["Title"]</h1>
+<h2>@ViewBag </h2>

@@ -1,0 +1,168 @@
+﻿@model Funcionario
+
+@{
+    ViewData["Title"] = "Atualizar registro";
+}
+
+
+@* Titulo  *@
+
+
+<main class="containerMain">
+    <div>
+        <h2 class="title">
+            Criar Registro
+        </h2>
+        <form method="post">
+
+            <div class="row container_foto-data">
+                @* Imagem
+                Tenho que adicionar uma funçao upload da imagem
+                *@
+                <div class="col">
+                    @* <label asp-for="Foto">
+                        <img id="preview" src="/css/Assets/funcImagem.jpeg" class="img-thumbnail" alt="...">
+                    </label> *@
+                    @*  <input type="file" id="imageUpload" asp-for="Foto" onchange="loadFile(event)" /> *@
+                </div>
+                @* Data de Contratação
+                **** Com o Atributo <<< asp-for >>> estamos RELACIONANDO os dois pedaços label e input
+                com a propriedade estipulada em Model Funcionário ***
+                *@
+                <div class="form-group col">
+                    <label asp-for="DataDeContratacao">Data de Contratação:</label>
+                    <input asp-for="DataDeContratacao" type="date" class="form-control" id="contratacao">
+                </div>
+            </div>
+            @* **************************  *@
+            <div class="row">
+                @* Nome   *@
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label">Nome</label>
+                    <input asp-for="Nome" type="text"
+                           class="form-control"
+                           id="formGroupExampleInput"
+                           placeholder="Digite o Nome">
+                </div>
+                @* Sobrenome   *@
+                <div class="mb-3">
+                    <label asp-for="Sobrenome" class="form-label">Sobrenome</label>
+                    <input asp-for="Sobrenome" type="text"
+                           class="form-control"
+                           id="formGroupExampleInput"
+                           placeholder="Digite o Sobrenome">
+                </div>
+                @* email  *@
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">E-mail</label>
+                    <input asp-for="Email" type="text"
+                           class="form-control"
+                           id="formGroupExampleInput"
+                           placeholder="Digite o e-mail">
+                </div>
+            </div>
+            @* **************************  *@            
+            <div class="row g-6 mb-3">
+                @* Data de Nascimento  *@
+                <div class="form-group col">
+                    <label asp-for="DataDeNascimento">Data de Nascimento</label>
+                    <input asp-for="DataDeNascimento" type="date" class="form-control" id="nascimento">
+                </div>
+                @* Gênero  *@
+                <div class="col mb-3">
+                    <label asp-for="Genero"> Gênero </label>
+                    <select asp-for="Genero" class="form-select" aria-label="Gênero">
+                        <option selected>Selecione</option>
+                        <option value="MC">Mulher cisgênero</option>
+                        <option value="MT">Mulher transgênero</option>
+                        <option value="HC">Homem cisgênero</option>
+                        <option value="HT">Homem transgênero</option>
+                        <option value="GNB">Gênero não-binário</option>
+                        <option value="Ag">Agênero</option>
+                        <option value="GF">Gênero-fluido</option>
+                        <option value="Bg">Bigênero</option>
+                    </select>
+                </div>
+            </div>
+            @* **************************  *@
+            <div class="row g-3 mb-3">
+                @* Senioridade *@
+                <div class="col">
+                    <label asp-for="Senioridade"> Senioridade </label>
+                    <select asp-for="Senioridade" class="form-select" aria-label="Senioridade">
+                        <option selected>Selecione</option>
+                        <option value="Estagiario">Estagiário</option>
+                        <option value="Junior">Junior</option>
+                        <option value="Pleno">Pleno</option>
+                        <option value="Senior">Sênior</option>
+                        <option value="Contratado">Contratado</option>
+                        <option value="Gerente">Gerente</option>
+                        <option value="Getor">Gestor</option>
+                    </select>
+                </div>
+
+
+                @* Cargo  *@
+                <div class="col mb-3">
+                    <label asp-for="Cargo"> Cargo </label>
+                    <select asp-for="Cargo" class="form-select" aria-label="Cargo">
+                        <option selected>Selecione</option>
+                        <option value="DevSoftware">Desenvolvedor</option>
+                        <option value="Engenheiro">Engenheiro</option>
+                        <option value="Analista">Analista</option>
+                        <option value="FullStack">Full-Stack</option>
+                        <option value="TI">TI</option>
+                        <option value="Infra">Infra</option>
+                        <option value="UX">UX</option>
+                        <option value="Recrutador">Recrutador(a)</option>
+                        <option value="QA">QA</option>
+                        <option value="Financeiro">Financeiro</option>
+                    </select>
+                </div>
+
+
+
+                @* Departamento *@
+                <div class="col mb-3">
+                    <label asp-for="Departamento"> Departamento </label>
+                    <select asp-for="Departamento" class="form-select" aria-label="Departamento">
+                        <option selected>Selecione</option>
+                        <option value="Suporte">Suporte Técnico</option>
+                        <option value="Desenvolvimento">Desenvolvimento</option>
+                        <option value="Segurança">Segurança da Informação</option>
+                        <option value="Redes">Redes</option>
+                        <option value="Sistemas">Sistemas</option>
+                        <option value="Dados">Dados</option>
+                        <option value="UX">Desing de Experiência do Usuário</option>
+                        <option value="Engenharia">Engenharia</option>
+                        <option value="TI">TI</option>
+                        <option value="Infra">Infra Estrutura</option>
+                        <option value="RH">Recursos Humanos</option>
+                    </select>
+                </div>
+
+                @* Acesso *@
+                <div class="col mb-3">
+                    <label asp-for="Acesso"> Acesso </label>
+                    <select asp-for="Acesso" class="form-select" aria-label="Acesso">
+                        <option selected>Selecione</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Gerente">Gerente</option>
+                        <option value="Funcionario">Funcionário Comum</option>
+                    </select>
+                </div>
+
+            </div>
+
+            @*  Botões  *@
+            <div class="mb-3 botoesForm">
+                <a asp-action="ListaFuncionarios" class="btn btn-outline-secondary form-button_cancelar" role="button">Cancelar</a>
+                <button  type="submit" class="btn btn-primary ">Salvar </button>
+                
+            </div>
+
+        </form>
+
+    </div>
+</main>
+

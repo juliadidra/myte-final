@@ -1,0 +1,19 @@
+﻿body {
+}
+
+:root {
+    --bs-primary: #A155B9; /* Roxo eescuro padrão */
+    --bs-primary-bright: #8B24AC; /* Hover ou destaque*/
+    --bs-opacity: #4a185926; /*  Opacidade para hover*/
+    --bs-secondary: #E8DEF8; /* Roxo claro */
+    --bs-tertiary: #6750A4; /* Roxo excruro */
+    --bs-light: #979797; /* Cinza para botões com baixa presença */
+    --bs-dark: #737373; /* Cinza para botões com baixa presença */
+    --bs-success: #34C27E; /* Verde para caixa de sucesso */
+    --bs-info: #2D9CDB; /* Azul botão que merece mais atenção */
+    --bs-warning: #DED72B; /* Amarela - Botão ou caixa de alerta */
+    --superficie: #F7F2F9; /* essa com vai no fundo do body */
+    --corTexto: #414141; /* Elemento Global - Para todos os textos*/
+    --corTexto-light: #979797; /* Cinza para texto com baixa presença */
+    --corBranco: #fff;
+}

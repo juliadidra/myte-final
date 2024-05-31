@@ -1,0 +1,42 @@
+﻿@model Departamento
+
+@{
+    ViewData["Title"] = "Criar Departamento";
+}
+
+<partial name="_NavBar" model="Model"></partial>
+
+<section class="container_body-departamento align-content-center">
+    <div>
+        <div class="container-departamento ">
+            <!-- Conteúdo da div aqui -->
+
+            <form class="elementos-form-NewDepartamento" method="post">
+                @* Titulo*@
+                <h3 class="label-titulo"> Criar Departamento </h3>
+
+                @* verifica se o estado do modelo é válido *@
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                    </div>
+                }
+                @* Campo nome do departamento  *@
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label"> Nome do Departamento </label>
+                    <input asp-for="Nome" type="text" class="form-control" placeholder="Crie um nome">
+                </div>
+
+
+                <div class="botoes-criar-departamento">
+                    <button asp-action="Index" class="botao-cancelar-depart">Cancelar</button>
+                    <button class="botao-salvar-depart" type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</section>
+

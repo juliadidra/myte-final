@@ -1,0 +1,74 @@
+﻿@*
+    Comunicação entre view e model
+*@
+
+@* Referenciar a Model User para estabelecer as especificações das props com
+as quais a aplicação vai lidar. *@
+@model User
+
+
+    @{
+        ViewData["Title"] = "Criar Usuário";
+    }
+
+<partial name="_NavBar" model="Model"></partial>
+
+<section class="container-body">
+    <div class="container-user">
+
+        <h2 class="user_title-info">@ViewData["Title"]</h2>
+
+
+        @* O atributo asp-validation-summary, fazendo uso do valor All,
+        faz validação de toda a estrutura de inputs do form.
+        Podemos aplicar individualmente ou em todos os inputs do form.
+        *@
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        
+        <div method="post">
+
+            <form class="formUser">
+                @* Email *@
+                <div class="mb-4">
+                    <label asp-for="Email" class="form-label">E-mail do Usuário</label>
+                    <input id="email" asp-for="Email" type="email" class="form-control" placeholder="seuemail@etym.com">
+                    @* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> *@
+                </div>
+                @* Email*@
+                <div class="mb-5">
+                    <label asp-for="Password" class="form-label">Criar Senha</label>
+                    <input id="password" asp-for="Password" type="password" class="form-control" placeholder="Criar senha">
+                </div>
+                <div class="buttonAll">
+                    <div class="btn-group grupoButton">
+                        @* Botão cópia*@
+                        <button onclick="copyEmailAndPassword()" class="btn btn-secondary ">Copiar Email e Senha</button>
+                        @* Botão Listar Usuários*@
+                        <div>
+                            <a asp-actio="Index" class="btn btn-light"> Listar Usuários </a>
+                        </div>
+                    </div>
+                    @* Botão Salvar *@
+                    <button asp-action="Index" 
+                            asp-controller="Func" 
+                            type="submit" 
+                            class="btn btn-primary buttonSalvar">
+                            Salvar
+                     </button>
+                </div>            
+                
+               
+            </form>
+           
+           
+           
+        </div>
+
+    </div>
+
+</section>
+
+
+
+

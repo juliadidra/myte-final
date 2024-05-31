@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<partial name="_Header" model="Model"></partial>
+
+<nav class="nav_principal_home">
+    <ul class="navegacao_lista-home">
+        <li>            
+            <a class="nav-item"  asp-area="" asp-controller="Func" asp-action="ListaFuncionarios">
+                <img src="/assets/func-adm.svg" class="nav-image" alt="...">
+                Funcionário
+            </a>
+        </li>
+        <li>
+            <a class="nav-item" asp-area="" asp-controller="Departamento" asp-action="Index">
+                <img src="/assets/depart-plus.svg" class="nav-image" alt="...">
+                Departamento
+            </a>
+        </li>
+        <li>
+            <a class="nav-item" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="/assets/dashboard-adm.svg" class="nav-image" alt="...">
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a class="nav-item" asp-area="" asp-controller="Wbs" asp-action="Index">
+                <img src="/assets/wbs-adm.svg" class="nav-image" alt="...">
+                WBS
+            </a>
+        </li>
+        <li>
+            <a class="nav-item" asp-area="" asp-controller="Calendar" asp-action="Index">
+                <img src="/assets/myte-adm.svg" class="nav-image" alt="...">
+                MyTE
+            </a>
+        </li>
+        
+    </ul>   
+</nav>

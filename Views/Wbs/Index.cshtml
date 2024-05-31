@@ -1,0 +1,110 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<Wbs>
+
+@{
+    ViewData["Title"] = "WBS cadastradas";
+}
+
+ @* <link rel="stylesheet" href="/css/IndexWbs.css">  *@
+
+ <partial name="_NavBar" model="Model"></partial>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        @* <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button> *@
+    </div>
+}
+
+@if (TempData["SuccessMessageDelete"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessageDelete"]
+        @* <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button> *@
+    </div>
+}
+
+@* Botão criar WBS e pesquisar - O CSS está no departamente  *@
+<div class="d-flex justify-content-end  mb-3 container-pesquisarEhNewbedepart">
+    <div class="div d-flex d-flex my-auto h-25   container-search">
+        <input type="search" placeholder="WBS" class=" input_search-depart" />
+        <button class="botao_search-depart"><img src="~/assets/icon_lupa.svg" /></button>
+    </div>
+
+    <a class="btn btn-primary botao_criar_departamento"
+       asp-action="CreateWbs">
+        <img src="~/assets/icon_add.svg" class="icone_plus" />
+        Criar WBS
+    </a>
+</div>
+
+
+
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<table class="table tabela_wbs">
+    <thead class="thead_wbs">
+        <tr class="tr_wbs">
+            <th>Nome</th>
+            <th>Codigo</th>
+            <th>Descrição</th>
+            <th>Tipo</th>
+            <th>Data de criação</th>
+            <th>Atualizar</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+
+    <tbody class="tbody_wbs">
+        @foreach(Wbs cadastro in Model)
+        {
+            <tr class="linha_tabela">
+                <form method="post" id="form_update">
+                <td> @cadastro.Nome </td>
+                <td>  @cadastro.Codigo</td>
+                <td> @cadastro.Descricao </td>
+                <td> @cadastro.Tipo </td>
+                <td>@cadastro.DataCriacao </td>
+                <td>
+                    <a class="btn  botao_edit_wbs edit-button"
+                       asp-action="UpdateWbs"
+                       asp-controller="Wbs"
+                       asp-route-codigo="@cadastro.Codigo">
+
+                        <img src="~/assets/icon_edit.svg"
+                             class="icon_edit">
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="DeleteWbs" method="post">
+                        <input type="hidden" value="@cadastro.Codigo" name="codigo" />
+                        <button type="submit" class="btn  botao_excluir_wbs confirm-action">
+                            <img src="~/assets/icon_delete.svg" class="icon_delete" />
+
+                        </button>
+                    </form>
+
+                </td>
+                </form>
+                
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+
+
+
+
+
+

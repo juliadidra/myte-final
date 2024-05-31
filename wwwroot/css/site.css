@@ -1,0 +1,238 @@
+:root {
+    --var-azul_escuro: #6750A4;
+    --var-cinza_input: ##979797;
+    --var-roxo_medio: #A155B9;
+    --var-lilas: #E8DEF8;
+    /* fonts */
+    --font-roboto: Roboto;
+    /* Paddings */
+    --padding-3xs: 10px;
+}
+
+
+
+html {
+    font-size: 14px;
+    height: 100vh;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    margin: 0;
+    line-height: normal;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: var(--corTexto);
+    margin-bottom: 60px;
+    background-color: var(--superficie);
+}
+
+/* ESTILO NAVBAR */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.container-home {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    text-align: center;
+    text-decoration: none;
+    align-items: center;
+}
+
+.icon-home {
+    max-width: 1.5rem;
+}
+
+.icon-user {
+    max-width: 2rem;
+}
+
+.btn-link {
+    text-decoration: none;
+    color: var(--bs-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+    .btn-link:hover {
+        color: var(--bs-primary);
+    }
+
+.header-user {
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem 3rem;
+    align-content: center;
+    /* align-self: center; */
+    align-items: center;
+    height: 76px;
+}
+
+.user-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-name {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.footer {
+    text-align: center;
+}
+
+.pesquisar {
+    display: flex;
+    margin: .5rem;
+    max-height: 48px;
+}
+
+img-pesquisar {
+    background-color: #E8DEF8;
+    width: 8px;
+}
+
+button-pesquisar {
+    background-color: #E8DEF8;
+    border-radius: 8px;
+}
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a {
+  color: #0077cc;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
+
+/*.navbar {
+    background: #E8DEF8;
+    height: 4em;
+}
+*/
+
+/* Remover o contorno de todos os campos de entrada*/
+input:focus {
+    outline: none;
+}
+input{
+    outline: none;
+}
+
+select:focus {
+    outline: none;
+}
+textarea:focus {
+    outline: none;
+}
+
+
+
+/*ESTILO ADMIN*/
+.botao-navegacao{
+    transition:0.2s;
+}
+
+.botao-navegacao:hover {
+    background-color: #a155b9;
+    color: #FFFFFF;
+}
+
+
+    .icones-adm {
+        width: 60%;
+        position: relative;
+        height: 60%;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+.botao-navegacao:hover .icones-adm {
+    filter: invert(100%) brightness(200%) contrast(200%);
+}
+
+.adm-div {
+    color: #A155B9;
+}
+
+.bg-custom {
+    background-color: #e8d8ff;
+}
+
+/* Estilo personalizado para ajustar a margem superior 
+.custom-mt {
+    margin-top: 2rem; 
+}
+*/
+
+
+/*  Ajuste Global de Botões */
+.btn-primary {
+    background-color: #E8DEF8;
+    color: none;
+}
+
+.btn-primary:hover{
+    background-color:#6750A4;
+}

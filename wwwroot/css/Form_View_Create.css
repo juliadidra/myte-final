@@ -1,0 +1,61 @@
+﻿
+
+.containerMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em;
+    height: 100%;
+    background-color: #FFFF;
+    box-shadow: 2px 0px 60px 2px rgb(53, 43, 81, 0.10);
+    padding: 2em;
+    border-radius: 10px;
+}
+
+.title_Form-Registro {
+    padding: 0 0 3rem 0;
+}
+
+.form-button_container {
+    padding: 3rem 0;
+    float: right;
+}
+
+
+
+.img-thumbnail {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.buttonUpload_imagem {
+    background-color: #EADDFF;
+    color: #F7F2F9;
+}
+
+/*Título*/
+
+
+.container_foto-data {
+    align-items: center;
+    padding: 0 0 2rem 0;
+}
+
+.botoesForm {
+    text-align: right;
+}
+
+.button_cancelar {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    color: #ffff;
+    border: var(--bs-primary);
+}
+
+

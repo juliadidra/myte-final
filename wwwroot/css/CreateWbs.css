@@ -1,0 +1,192 @@
+﻿/*body{
+    width: 100vw;
+    height: 100vh;
+}*/
+
+/*nav{
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+}
+*/
+.div_all_createWbs{
+    padding: 2rem;
+
+}
+
+.card_criar_wbs {
+    width: 50%;
+    padding: 0.8em;
+    box-shadow: 2px 0px 60px 2px rgb(53, 43, 81, 0.10);
+}
+
+.titulo_criar_wbs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+
+.form_criar_wbs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 1em;
+}
+
+.div_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.form_criar_wbs input {
+    border: 2px solid #979797;
+    border-radius: 10px;
+    height: 2.5em;
+    padding: 0.5em;
+}
+
+.button_form {
+    width:50%;
+    background: #A155B9;
+    color: white;
+    border: none;
+    transition: 0.2s;
+    border-radius: 10px;
+    height: 2.5em;
+}
+
+    .button_form:hover {
+        background: purple;
+    }
+
+.button_cancelar {
+    width: 50%;
+    border-radius: 10px;
+    background: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.div_tipo{
+    display: flex;
+    gap:0.4em;
+    align-items:center;
+}
+
+input[type='radio'] {
+    accent-color: purple;
+}
+
+
+/*ESTILO READ WBS*/
+.input_search {
+    border-radius: 8px;
+    border: 1px solid #979797;
+    padding: 0.5em;
+}
+
+.botao_search {
+    border: none;
+    background: none;
+}
+
+.botao_criar_wbs {
+    display: flex;
+    float: right;
+    background: #A155B9;
+    color: white;
+    border: none;
+    width: 120px;
+    transition: 0.2s;
+    border-radius: 10px;
+    height: 2.5em;
+    margin: 1em 3rem;
+    font-weight:600;
+}
+
+    .botao_criar_wbs:hover {
+        background: purple;
+    }
+
+.tabela_wbs {
+    font-size: 18px;
+    color: #414141;
+}
+
+    .tabela_wbs thead {
+        background: var(--var-azul_escuro);
+        color: white;
+    }
+
+td, tr {
+   text-align:center;
+
+}
+.table > :not(caption) > * > * {
+    padding: .5rem .5rem;
+    background-color: var(--bs-table-bg);
+    border-bottom-width: 1px;
+    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+    align-content: baseline;
+}
+
+.linha_tabela:nth-child(odd) {
+    background: #EFDEF4;
+    
+    
+}
+
+.linha_tabela:nth-child(even) {
+    background: #F7F2F9;
+}
+
+
+
+.icon_delete {
+    text-decoration-color: black;
+}
+
+a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_Pesquisa-button{
+    padding: 0 2rem;
+    
+}
+
+.icone_plus {
+    width: 20px;
+    margin-right: 0.3em;
+    font-weight: 600;
+}
+
+.icon_edit {
+    filter: invert(0);
+
+}
+
+.icon_delete {
+    filter: invert(0) brightness(118%) contrast(119%);
+}
+.botao_excluir_wbs, .botao_edit_wbs {
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: none;
+}
+
+.botao_edit_wbs {
+    border: none;
+}
+
+

@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model Funcionario
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+
+
+
+<div class="container-Login">
+    <div class="container-form-login">
+        <form class="form-login">
+            <div class="container-login-apresentacao">
+                <img src="/assets/depart-plus.svg" class="image-login" alt="...">
+                Painel Etym
+            </div>
+            <div class="mb-3">
+                <label for="InputEmail" class="form-label">Digite seu e-mail:</label>
+                <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="InputPassword" class="form-label">Digite a sua Senha:</label>
+                <input type="password" class="form-control" id="InputPassword">
+                @* <div id="emailHelp" class="form-text"><a href="#">Esqueci minha senha</a></div> *@
+            </div>
+            <div class="container-button-entrar">
+                <button asp-action="Home"   type="submit" class="btn button-Entrar btn-primary">Entrar</button>
+            </div>
+
+        </form>
+    </div>
+
+
+
+</div>

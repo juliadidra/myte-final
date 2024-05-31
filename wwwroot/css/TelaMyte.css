@@ -1,0 +1,24 @@
+﻿.botao-criar-myte {
+    background: #A155B9;
+    color: white;
+    border: none;
+    width: 15%;
+    transition: 0.2s;
+    border-radius: 10px;
+    height: 2.5em;
+    margin: 1em;
+}
+
+.botao-lista-wbs {
+    border-radius: 8px;
+    border: 1.5px solid #A155B9;
+    padding: 0.5em;
+    height: 2.5em;
+    margin: 1em;
+    color: #A155B9
+}
+
+.celula-destaque {
+    background: #E8DEF8;
+    color: #A155B9;
+}

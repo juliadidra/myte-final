@@ -1,0 +1,12 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Wbs
+@{
+    ViewData["Title"] = "WBS cadastrada com sucesso!";
+}
+
+<a class="nav-link" asp-action="Index">Listar WBS</a>
+
+<h1>@ViewData["Title"]</h1>
+<h2>A WBS @Model.Nome agora está disponivel</h2>

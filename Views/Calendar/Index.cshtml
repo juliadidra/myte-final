@@ -1,0 +1,72 @@
+﻿@model myte.Models.CalendarPageViewModel
+
+
+<partial name="_NavBar" model="Model"></partial>
+
+@* Calendar MyTE *@
+
+    <div class="calendar-container">
+    <section class="container-buttonSalva-calendar  d-flex justify-content-end ">
+        
+            @* Calendário Quinzena *@
+            <div class="calendar-header">
+                <button id="prev">Anterior</button>
+                <span id="quinzena-label"></span>
+                <button id="next">Próximo</button>
+            </div>
+
+            @* Botão Salvar *@
+            <div class="div_botao_salvar">
+                <button class="botao_salvar"> Salvar</button>
+            </div>
+
+     </section>
+       
+
+        @* Tabela Calendário *@
+        <table class="calendar-table">
+            <thead>
+                <tr id="header-row">
+                    <th class="vw-100">WBS</th>                    
+                    @foreach (var day in Model.CalendarDays)
+                    {
+                    <th class="w-25">
+                            <div>@day.DayOfWeek</div>
+                            <div>@day.Day</div>
+                        </th>
+                    }
+                    
+                </tr>
+            </thead>
+            <tbody id="calendar-body">
+                @for (int i = 0; i < 7; i++)
+                {
+                    <tr>                        
+                    <td>
+                        <select class="wbs-select">
+                            @foreach (var wbsOption in Model.WbsList)
+                            {
+                                <option value="@wbsOption.Codigo">@wbsOption.Nome</option>
+                            }
+                        </select> 
+                    </td>
+
+                    @foreach (var day in Model.CalendarDays)
+                        {
+                            <td class="day-cell">
+                                <input type="number"
+                                   class="hours-input"
+                                   data-day="@day.Day" 
+                                   data-dayofweek="@day.DayOfWeek"
+                                 />
+                            </td>                        
+                        }
+                        
+                    </tr>
+                }
+                </tbody>
+        </table>
+    </div>
+
+    <script src="~/js/calendar.js"></script>
+

@@ -1,0 +1,81 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Wbs
+@{
+
+    ViewData["Title"] = "Criar WBS";
+}
+ 
+
+@*  <nav>
+    <a asp-action="Index" class="link_lista_wbs"> <img src="/off.svg" class="icone_home"/>Painel WBS</a>
+    <div>
+        <p> Perfil</p>
+        <img />
+    </div>
+</nav> *@ 
+
+
+<div class="col d-flex justify-content-center div_all_createWbs">
+    
+    
+
+<div class="card shadow bg-white rounded card_criar_wbs ">
+    <h1 class="titulo_criar_wbs">@ViewData["Title"]</h1>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+            </div>
+        }
+        <form method="post" class="form_criar_wbs">
+            <div class="div_inputs">
+                <label asp-for="Nome"></label>
+                <input asp-for="Nome" placeholder="Nome da WBS"/>
+                <span></span>
+            </div>
+
+            <div class="div_inputs">
+                <label asp-for="Codigo"></label>
+                <input asp-for="Codigo" placeholder="Entre 4 e 10 caracteres (apenas letras e números)"/>
+                <span></span>
+            </div>
+
+            <div class="div_inputs">
+                <label asp-for="Descricao"></label>
+                <input asp-for="Descricao" placeholder="Descrição da WBS"/>
+                <span></span>
+            </div>
+
+
+            <div class="div_inputs">
+                <label asp-for="DataCriacao"></label>
+                <input asp-for="DataCriacao" type="date" />
+                <span></span>
+            </div>
+
+            <div class="div_tipo">
+                <input type="radio" asp-for="Tipo" value="Chargeability">Chargeability
+                <input type="radio" asp-for="Tipo" value="Non-Chargeability">Non-Chargeability
+                <span></span>
+            </div>
+
+            <div class="d-flex justify-content-around gap-2">
+                <a asp-controller="Wbs" asp-action="Index" class="btn btn-secondary button_cancelar">Cancelar</a>
+                <button type="submit" class="button_form">Cadastrar</button>
+                
+            </div>
+                
+            
+        </form>
+    
+</div>
+
+</div>
+
+
+

@@ -1,0 +1,108 @@
+﻿.calendar-container {
+    margin: 20px;
+    padding-bottom: 1em;
+}
+
+.container-buttonSalva-calendar {
+    align-items: baseline;
+    gap: 10%;
+    padding: 1rem 2rem;
+}
+
+.botao_salvar {
+    background-color: #DED72B;
+    color: #414141;
+    border: none;
+    transition: 0.2s;
+    border-radius: 10px;
+    height: 2.5em;
+    width: 8em;
+    font-weight: 600;
+    padding: 0 1rem;
+}
+
+    .botao_salvar:hover {
+        background-color: #B3AF52;
+    }
+
+    #prev, #next {
+        background: #E8DEF8;
+        color: #414141;
+        border: none;
+        transition: 0.2s;
+        border-radius: 10px;
+        height: 2.5em;
+    }
+
+    #prev:hover, #next:hover {
+        background: #A155B9;
+        color:white;
+    }
+
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    gap:5em;
+    padding:1em;
+}
+
+
+    #quinzena-label {
+    color: #A155B9;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-color: #fff;
+    background: #E8DEF8;
+}
+
+
+.calendar-table thead {
+    background-color: #A155B9;
+    color: white;    
+}
+    .calendar-table th, .calendar-table td {
+        border: 1px solid #ffff;
+        padding: 10px;
+        text-align: center;
+    }
+
+
+.wbs-select {
+    width: 20rem;
+    background: #E8DEF8;
+    border: none;
+}
+
+
+
+.hours-input {
+    width: 90%;
+    border: none;
+    background: #E8DEF8;
+}
+
+.hours-input:disabled {
+    background-color: #A155B9;
+    cursor: not-allowed;
+}
+
+.day-cell input{
+    background-color: #A155B9;
+}
+.weekend {
+    background-color: #A155B9; /* Substitua por sua cor desejada */
+}
+.day .weekend {
+    border: 2px solid #ffff;
+}
+

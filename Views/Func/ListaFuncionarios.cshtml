@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Funcionario>
+
+@{
+    ViewData["Title"] = "Gestão de funcionarios";
+}
+
+
+<partial name="_NavBar" model="Model"></partial>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        @* <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button> *@
+    </div>
+}
+
+@if (TempData["SuccessMessageDelete"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessageDelete"]
+        @* <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button> *@
+    </div>
+}
+
+@* Botão criar WBS e pesquisar - O CSS está no departamente  *@
+<div class="d-flex justify-content-end  mb-3 container-pesquisarEhNewbedepart">
+    <div class="div d-flex d-flex my-auto h-25   container-search">
+        <input type="search" placeholder="Funcionário" class=" input_search-depart" />
+        <button class="botao_search-depart"><img src="~/assets/icon_lupa.svg" /></button>
+    </div>
+
+    <a class="btn btn-primary botao_criar_departamento"
+       asp-action="Create">
+        <img src="~/assets/icone-admissao-admin.svg" class="icone_plus" />
+        Admissão
+    </a>
+</div>
+
+
+
+@* listagem dos Funcionários*@
+
+<div class="container_TodosFunc">
+        @foreach (Funcionario registro in Model)
+        {
+            <div class=" container_CardFuncionario">
+                <article class=" card_Func">
+
+                    @* Imagem Funcionário*@
+                    <div class="container_img-card">
+                        <img src="/assets/func-adm.svg" class="imagem-card" alt="...">
+                    </div>
+                    @* Inserir os Dados no Card *@
+                    <div class="container_listaDados">
+                        <span class="item_text-nome">
+                            @registro.Nome 
+                        </span>
+                        <span class="item_text-cargo">
+                            @registro.Cargo
+                        </span>
+                         <span class="item_text-depart">
+                             @registro.Departamento
+                        </span>
+                    </div>
+                      
+
+                    @* Botão Atualizar *@
+                    <div class="d-flex justify-content-center container_button-funcCard">
+                        <div class="">
+                            <a class="btn btn-light botao-atualizar"
+                               asp-action="Update"
+                               asp-route-identificador="@registro.Nome">
+                                Atualizar
+                            </a>
+
+                        </div>
+                        @* Botão Excluir *@
+                        <div class="">
+                            <form asp-action="Delete"
+                                  asp-route-identificador="@registro.Nome" method="post">
+                                <button class="btn btn-outline-danger botao-atualizar-excluir" data-id="@registro.Nome">
+                                    Excluir
+                                </button>
+                            </form>
+                        </div>
+                    </div> @* Fecha a div dos botões*@
+                </article>
+            </div>
+        }
+    </div>
