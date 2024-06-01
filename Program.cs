@@ -24,6 +24,7 @@ builder.Services.AddHttpClient();
 builder.Services.AddScoped<WbsService>();
 builder.Services.AddScoped<RegistroHorasService>();
 builder.Services.AddScoped<DepartamentoService>();
+builder.Services.AddScoped<FuncionarioService>();
 /***** Primeiro bloco unifica os serviços para a aplicação funcionar *****/
 
 

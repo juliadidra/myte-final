@@ -63,7 +63,7 @@
                             @registro.Cargo
                         </span>
                          <span class="item_text-depart">
-                             @registro.Departamento
+                             @registro.Departamento_Id
                         </span>
                     </div>
                       
@@ -73,7 +73,7 @@
                         <div class="">
                             <a class="btn btn-light botao-atualizar"
                                asp-action="Update"
-                               asp-route-identificador="@registro.Nome">
+                               asp-route-id="@registro.Email">
                                 Atualizar
                             </a>
 
@@ -81,8 +81,8 @@
                         @* Botão Excluir *@
                         <div class="">
                             <form asp-action="Delete"
-                                  asp-route-identificador="@registro.Nome" method="post">
-                                <button class="btn btn-outline-danger botao-atualizar-excluir" data-id="@registro.Nome">
+                                  asp-route-id="@registro.Email" method="post">
+                                <button class="btn btn-outline-danger botao-atualizar-excluir" data-id="@registro.Email">
                                     Excluir
                                 </button>
                             </form>
