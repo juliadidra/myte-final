@@ -37,8 +37,8 @@
         <button class="botao_search-depart"><img src="~/assets/icon_lupa.svg" /></button>
     </div>
 
-    <a class="btn btn-primary botao_criar_departamento" 
-        asp-action="Create"> 
+    <a class="btn btn-primary botao_criar_departamento"
+       asp-controller="Departamento" asp-action="Create">
         <img src="~/assets/icon_add.svg" class="icone_plus" />
         Criar Departamento
     </a>
@@ -62,12 +62,12 @@
                         <div class="d-flex justify-content-center gap-2">
                             <div class="mb-2 mr-2">
 
-                                <a class="btn btn-outline-light botao-atualizar botao-atualizar-excluir"  asp-action="Update" asp-route-identificador="@registro.Nome">Atualizar</a>
+                                <a class="btn btn-outline-light botao-atualizar botao-atualizar-excluir" asp-action="Update" asp-route-id="@registro.Id">Atualizar</a>
                                 
                             </div>
                             <div class="mb-2">
-                                <form asp-action="Delete" asp-route-identificador="@registro.Nome" method="post">
-                                    <button class="btn btn-outline-danger botao-atualizar-excluir" data-id="@registro.Nome">Excluir</button>
+                                <form asp-action="Delete" asp-route-id="@registro.Id" method="post">
+                                    <button class="btn btn-outline-danger botao-atualizar-excluir" data-id="@registro.Id">Excluir</button>
                                 </form>
                             </div>
                         </div>
