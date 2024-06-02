@@ -33,8 +33,8 @@
         <button class="botao_search-depart"><img src="~/assets/icon_lupa.svg" /></button>
     </div>
 
-    <a class="btn btn-primary botao_criar_departamento"
-       asp-action="Create">
+    <a class="btn btn-primary botao_criar_departamento" asp-controller="Func"
+       asp-action="AdicionarFuncionario">
         <img src="~/assets/icone-admissao-admin.svg" class="icone_plus" />
         Admissão
     </a>
@@ -45,50 +45,50 @@
 @* listagem dos Funcionários*@
 
 <div class="container_TodosFunc">
-        @foreach (Funcionario registro in Model)
-        {
-            <div class=" container_CardFuncionario">
-                <article class=" card_Func">
+    @foreach (Funcionario registro in Model)
+    {
+        <div class=" container_CardFuncionario">
+            <article class=" card_Func">
 
-                    @* Imagem Funcionário*@
-                    <div class="container_img-card">
-                        <img src="/assets/func-adm.svg" class="imagem-card" alt="...">
+                @* Imagem Funcionário*@
+                <div class="container_img-card">
+                    <img src="/assets/func-adm.svg" class="imagem-card" alt="...">
+                </div>
+                @* Inserir os Dados no Card *@
+                <div class="container_listaDados">
+                    <span class="item_text-nome">
+                        @registro.Nome
+                    </span>
+                    <span class="item_text-cargo">
+                        @registro.Cargo
+                    </span>
+                    <span class="item_text-depart">
+                        @registro.Departamento_Id
+                    </span>
+                </div>
+
+
+                @* Botão Atualizar *@
+                <div class="d-flex justify-content-center container_button-funcCard">
+                    <div class="">
+                        <a class="btn btn-light botao-atualizar"
+                           asp-action="UpdateFuncionario"
+                           asp-route-email="@registro.Email">
+                            Atualizar
+                        </a>
+
                     </div>
-                    @* Inserir os Dados no Card *@
-                    <div class="container_listaDados">
-                        <span class="item_text-nome">
-                            @registro.Nome 
-                        </span>
-                        <span class="item_text-cargo">
-                            @registro.Cargo
-                        </span>
-                         <span class="item_text-depart">
-                             @registro.Departamento_Id
-                        </span>
+                    @* Botão Excluir *@
+                    <div class="">
+                        <form asp-action="DeleteFuncionario"
+                              asp-route-Email="@registro.Email" method="post">
+                            <button class="btn btn-outline-danger botao-atualizar-excluir" data-id="@registro.Email">
+                                Excluir
+                            </button>
+                        </form>
                     </div>
-                      
-
-                    @* Botão Atualizar *@
-                    <div class="d-flex justify-content-center container_button-funcCard">
-                        <div class="">
-                            <a class="btn btn-light botao-atualizar"
-                               asp-action="Update"
-                               asp-route-id="@registro.Email">
-                                Atualizar
-                            </a>
-
-                        </div>
-                        @* Botão Excluir *@
-                        <div class="">
-                            <form asp-action="Delete"
-                                  asp-route-id="@registro.Email" method="post">
-                                <button class="btn btn-outline-danger botao-atualizar-excluir" data-id="@registro.Email">
-                                    Excluir
-                                </button>
-                            </form>
-                        </div>
-                    </div> @* Fecha a div dos botões*@
-                </article>
-            </div>
-        }
-    </div>
+                </div> @* Fecha a div dos botões*@
+            </article>
+        </div>
+    }
+</div>

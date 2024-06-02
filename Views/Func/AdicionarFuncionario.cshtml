@@ -1,0 +1,217 @@
+﻿@*
+    Está view se comunicará com a action Create estabelecida no ColabController()
+
+    Implementar as instruções para definir um estrutura html para a criação de um formulário.
+    E assim "Linkar" as actions Create e Index.
+*@
+
+@model myte.Models.DepartamentoFuncionarioViewModel
+
+@{
+    ViewData["Title"] = "Criar Registro";
+}
+
+
+@* Titulo  *@
+
+<div class="col d-flex justify-content-center ">
+
+
+    <main class=" containerMain">
+
+        <form method="post">
+            <h1 class="title_Form-Registro">
+                Criar Registro
+            </h1>
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                </div>
+            }
+
+            <div class="row container_foto-data">
+                <div class="col">
+                    <label>
+                        <img id="preview" src="/assets/icon_user.svg" class="img-thumbnail" alt="...">
+                    </label>
+
+                </div>
+                @* Data de Contratação*@
+                <div class="form-group col">
+                    <label asp-for="funcionario.DataDeContratacao">Data de Contratação:</label>
+                    <input asp-for="funcionario.DataDeContratacao"
+                           type="date"
+                           class="form-control @(ViewData.ModelState["DataDeContacacao"]?.Errors.Count > 0 ? "is-invalid" : "")"
+                           id="contratacao">
+                    <span asp-validation-for="funcionario.DataDeContratacao" class="text-danger"></span>
+                </div>
+            </div>
+            @* **************************  *@
+            <div class="row">
+                @* Nome   *@
+                <div class="mb-3">
+                    <label asp-for="funcionario.Nome" class="form-label">Nome</label>
+                    <input asp-for="funcionario.Nome" type="text"
+                           class="form-control @(ViewData.ModelState["Nome"]?.Errors.Count > 0 ? "is-invalid" : "")"
+                           id="nome"
+                           placeholder="Digite o Nome">
+                    <span asp-validation-for="funcionario.Nome" class="text-danger"></span>
+                </div>
+                @* Sobrenome   *@
+                <div class="mb-3">
+                    <label asp-for="funcionario.Sobrenome" class="form-label">Sobrenome</label>
+                    <input asp-for="funcionario.Sobrenome" type="text"
+                           class="form-control @(ViewData.ModelState["Sobrenome"]?.Errors.Count > 0 ? "is-invalid" : "")"
+                           id="sobrenome"
+                           placeholder="Digite o Sobrenome">
+                    <span asp-validation-for="funcionario.Sobrenome" class="text-danger"></span>
+                </div>
+                @* email  *@
+                <div class="mb-3">
+                    <label asp-for="funcionario.Email" class="form-label">E-mail</label>
+                    <input asp-for="funcionario.Email" type="text"
+                           class="form-control @(ViewData.ModelState["Email"]?.Errors.Count > 0 ? "is-invalid" : "")"
+                           id="email"
+                           placeholder="Digite o e-mail">
+                    <span asp-validation-for="funcionario.Email" class="text-danger"></span>
+                </div>
+            </div>
+            @* **************************  *@
+            <div class="row g-6 mb-3">
+                @* Data de Nascimento  *@
+                <div class="form-group col">
+                    <label asp-for="funcionario.DataDeNascimento">Data de Nascimento</label>
+                    <input asp-for="funcionario.DataDeNascimento"
+                           type="date"
+                           class="form-control @(ViewData.ModelState["DataDeNascimento"]?.Errors.Count > 0 ? "is-invalid" : "")"
+                           id="nascimento"
+                           placeholder="Digite a data de nascimento ">
+                    <span asp-validation-for="funcionario.DataDeNascimento" class="text-danger"></span>
+
+                </div>
+                @* Gênero  *@
+                <div class="col mb-3">
+                    <label asp-for="funcionario.Genero"> Gênero </label>
+                    <select asp-for="funcionario.Genero"
+                            class="form-select @(ViewData.ModelState["Genero"]?.Errors.Count > 0 ? "is-invalid" : "")"
+                            aria-label="Gênero">
+                        <option selected>Selecione</option>
+                        <option value="MC">Mulher cisgênero</option>
+                        <option value="MT">Mulher transgênero</option>
+                        <option value="HC">Homem cisgênero</option>
+                        <option value="HT">Homem transgênero</option>
+                        <option value="GNB">Gênero não-binário</option>
+                        <option value="Ag">Agênero</option>
+                        <option value="GF">Gênero-fluido</option>
+                        <option value="Bg">Bigênero</option>
+                    </select>
+                    <span asp-validation-for="funcionario.Genero" class="text-danger"></span>
+                </div>
+            </div>
+            @* **************************  *@
+            <div class="row g-3 mb-3">
+                @* Senioridade *@
+                <div class="col">
+                    <label asp-for="funcionario.Senioridade"> Senioridade </label>
+                    <select asp-for="funcionario.Senioridade"
+                            class="form-select @(ViewData.ModelState["Senioridade"]?.Errors.Count > 0 ? "is-invalid" : "")"
+                            aria-label="Senioridade">
+                        <option selected>Selecione</option>
+                        <option value="Estagiario">Estagiário</option>
+                        <option value="Junior">Junior</option>
+                        <option value="Pleno">Pleno</option>
+                        <option value="Senior">Sênior</option>
+                        <option value="Contratado">Contratado</option>
+                        <option value="Gerente">Gerente</option>
+                        <option value="Getor">Gestor</option>
+                    </select>
+                    <span asp-validation-for="funcionario.Senioridade" class="text-danger"></span>
+                </div>
+
+
+                @* Cargo  *@
+                <div class="col mb-3">
+                    <label asp-for="funcionario.Cargo"> Cargo </label>
+                    <select asp-for="funcionario.Cargo"
+                            class="form-select @(ViewData.ModelState["Cargo"]?.Errors.Count > 0 ? "is-invalid" : "")"
+                            aria-label="Cargo">
+                        <option selected>Selecione</option>
+                        <option value="DevSoftware">Desenvolvedor</option>
+                        <option value="Engenheiro">Engenheiro</option>
+                        <option value="Analista">Analista</option>
+                        <option value="FullStack">Full-Stack</option>
+                        <option value="TI">TI</option>
+                        <option value="Infra">Infra</option>
+                        <option value="UX">UX</option>
+                        <option value="Recrutador">Recrutador(a)</option>
+                        <option value="QA">QA</option>
+                        <option value="Financeiro">Financeiro</option>
+                    </select>
+                    <span asp-validation-for="funcionario.Cargo" class="text-danger"></span>
+                </div>
+
+
+
+                @* Departamento *@
+                <div class="col mb-3">
+                    <label asp-for="funcionario.Departamento_Id"> Departamento </label>
+                    <select asp-for="funcionario.Departamento_Id"
+                            class="form-select @(ViewData.ModelState["Departamento"]?.Errors.Count > 0 ? "is-invalid" : "")"
+                            aria-label="Departamento">
+                        <option selected>Selecione</option>
+
+                        @foreach (Departamento registro in Model.departamento)
+                        {
+                            <option value=@registro.Id>@registro.Nome</option>
+                        }
+                        @* <option value="Suporte">Suporte Técnico</option>
+                        <option value="Desenvolvimento">Desenvolvimento</option>
+                        <option value="Segurança">Segurança da Informação</option>
+                        <option value="Redes">Redes</option>
+                        <option value="Sistemas">Sistemas</option>
+                        <option value="Dados">Dados</option>
+                        <option value="UX">Desing de Experiência do Usuário</option>
+                        <option value="Engenharia">Engenharia</option>
+                        <option value="TI">TI</option>
+                        <option value="Infra">Infra Estrutura</option>
+                        <option value="RH">Recursos Humanos</option>*@
+                    </select>
+                    <span asp-validation-for="funcionario.Departamento_Id" class="text-danger"></span>
+                </div>
+
+                @* Acesso *@
+                <div class="col mb-3">
+                    <label asp-for="funcionario.Acesso"> Acesso </label>
+                    <select asp-for="funcionario.Acesso"
+                            class="form-select @(ViewData.ModelState["Acesso"]?.Errors.Count > 0 ? "is-invalid" : "")"
+                            aria-label="Acesso">
+                        <option selected>Selecione</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Gerente">Gerente</option>
+                        <option value="Funcionario">Funcionário Comum</option>
+                    </select>
+                    <span asp-validation-for="funcionario.Acesso" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            @*  Botões  *@
+            <div class="mb-3 botoesForm">
+                <a class="btn btn-outline-secondary form-button_cancelar  "
+                   asp-action="ListaFuncionarios"
+                   role="button">
+                    Cancelar
+                </a>
+                <button type="submit"
+                        class="btn btn-primary ">
+                    Salvar e Gerar Primeiro Acesso
+                </button>
+
+            </div>
+
+        </form>
+    </main>
+</div>
+

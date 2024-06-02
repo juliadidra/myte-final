@@ -12,14 +12,15 @@ namespace myte.Services
 
             _httpClient.BaseAddress = new Uri("http://localhost:5273");
         }
-        //lista todos os funcionarios
+
+        //lista todos os funcionario
         public async Task<List<Funcionario>> GetAllFuncionarioAsync()
         {
             var apiResposta = await _httpClient.GetFromJsonAsync<List<Funcionario>>("/api/Funcionario/GetAll");
             return apiResposta;
         }
 
-        //resgata apenas 1 funcionario
+        //resgata apenas 1 Funcionario
 
         public async Task<Funcionario> GetFuncionarioByIdAsync(string email)
         {
@@ -27,7 +28,7 @@ namespace myte.Services
             return apiResposta;
         }
 
-        //Cria um funcionario
+        //Cria um Funcionario
 
         public async Task<Funcionario> AddFuncionarioAsync(Funcionario funcionario)
         {
@@ -37,7 +38,7 @@ namespace myte.Services
             return await apiResposta.Content.ReadFromJsonAsync<Funcionario>(); //desserializando
         }
 
-        //Atualiza um funcionario
+        //Atualiza um Funcionario
 
         public async Task<Funcionario> UpdateFuncionarioAsync(string email, Funcionario funcionario)
         {
@@ -51,7 +52,7 @@ namespace myte.Services
 
         public async Task DeleteFuncionarioAsync(string email)
         {
-            var apiResposta = await _httpClient.DeleteAsync($"/api/Funcionario/Delete/ {email}");
+            var apiResposta = await _httpClient.DeleteAsync($"/api/Funcionario/Delete/{email}");
             apiResposta.EnsureSuccessStatusCode();
         }
     }

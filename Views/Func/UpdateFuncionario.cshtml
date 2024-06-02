@@ -1,4 +1,4 @@
-﻿@model Funcionario
+﻿@model myte.Models.DepartamentoFuncionarioViewModel
 
 @{
     ViewData["Title"] = "Atualizar registro";
@@ -30,32 +30,32 @@
                 com a propriedade estipulada em Model Funcionário ***
                 *@
                 <div class="form-group col">
-                    <label asp-for="DataDeContratacao">Data de Contratação:</label>
-                    <input asp-for="DataDeContratacao" type="date" class="form-control" id="contratacao">
+                    <label asp-for="funcionario.DataDeContratacao">Data de Contratação:</label>
+                    <input asp-for="funcionario.DataDeContratacao" type="date" class="form-control" id="contratacao">
                 </div>
             </div>
             @* **************************  *@
             <div class="row">
                 @* Nome   *@
                 <div class="mb-3">
-                    <label asp-for="Nome" class="form-label">Nome</label>
-                    <input asp-for="Nome" type="text"
+                    <label asp-for="funcionario.Nome" class="form-label">Nome</label>
+                    <input asp-for="funcionario.Nome" type="text"
                            class="form-control"
                            id="formGroupExampleInput"
                            placeholder="Digite o Nome">
                 </div>
                 @* Sobrenome   *@
                 <div class="mb-3">
-                    <label asp-for="Sobrenome" class="form-label">Sobrenome</label>
-                    <input asp-for="Sobrenome" type="text"
+                    <label asp-for="funcionario.Sobrenome" class="form-label">Sobrenome</label>
+                    <input asp-for="funcionario.Sobrenome" type="text"
                            class="form-control"
                            id="formGroupExampleInput"
                            placeholder="Digite o Sobrenome">
                 </div>
                 @* email  *@
                 <div class="mb-3">
-                    <label asp-for="Email" class="form-label">E-mail</label>
-                    <input asp-for="Email" type="text"
+                    <label asp-for="funcionario.Email" class="form-label">E-mail</label>
+                    <input asp-for="funcionario.Email" type="text"
                            class="form-control"
                            id="formGroupExampleInput"
                            placeholder="Digite o e-mail">
@@ -65,13 +65,13 @@
             <div class="row g-6 mb-3">
                 @* Data de Nascimento  *@
                 <div class="form-group col">
-                    <label asp-for="DataDeNascimento">Data de Nascimento</label>
-                    <input asp-for="DataDeNascimento" type="date" class="form-control" id="nascimento">
+                    <label asp-for="funcionario.DataDeNascimento">Data de Nascimento</label>
+                    <input asp-for="funcionario.DataDeNascimento" type="date" class="form-control" id="nascimento">
                 </div>
                 @* Gênero  *@
                 <div class="col mb-3">
-                    <label asp-for="Genero"> Gênero </label>
-                    <select asp-for="Genero" class="form-select" aria-label="Gênero">
+                    <label asp-for="funcionario.Genero"> Gênero </label>
+                    <select asp-for="funcionario.Genero" class="form-select" aria-label="Gênero">
                         <option selected>Selecione</option>
                         <option value="MC">Mulher cisgênero</option>
                         <option value="MT">Mulher transgênero</option>
@@ -88,8 +88,8 @@
             <div class="row g-3 mb-3">
                 @* Senioridade *@
                 <div class="col">
-                    <label asp-for="Senioridade"> Senioridade </label>
-                    <select asp-for="Senioridade" class="form-select" aria-label="Senioridade">
+                    <label asp-for="funcionario.Senioridade"> Senioridade </label>
+                    <select asp-for="funcionario.Senioridade" class="form-select" aria-label="Senioridade">
                         <option selected>Selecione</option>
                         <option value="Estagiario">Estagiário</option>
                         <option value="Junior">Junior</option>
@@ -104,8 +104,8 @@
 
                 @* Cargo  *@
                 <div class="col mb-3">
-                    <label asp-for="Cargo"> Cargo </label>
-                    <select asp-for="Cargo" class="form-select" aria-label="Cargo">
+                    <label asp-for="funcionario.Cargo"> Cargo </label>
+                    <select asp-for="funcionario.Cargo" class="form-select" aria-label="Cargo">
                         <option selected>Selecione</option>
                         <option value="DevSoftware">Desenvolvedor</option>
                         <option value="Engenheiro">Engenheiro</option>
@@ -124,27 +124,20 @@
 
                 @* Departamento *@
                 <div class="col mb-3">
-                    <label asp-for="Departamento_Id"> Departamento </label>
-                    <select asp-for="Departamento_Id" class="form-select" aria-label="Departamento">
-                        <option selected>Selecione</option>
-                        <option value="Suporte">Suporte Técnico</option>
-                        <option value="Desenvolvimento">Desenvolvimento</option>
-                        <option value="Segurança">Segurança da Informação</option>
-                        <option value="Redes">Redes</option>
-                        <option value="Sistemas">Sistemas</option>
-                        <option value="Dados">Dados</option>
-                        <option value="UX">Desing de Experiência do Usuário</option>
-                        <option value="Engenharia">Engenharia</option>
-                        <option value="TI">TI</option>
-                        <option value="Infra">Infra Estrutura</option>
-                        <option value="RH">Recursos Humanos</option>
+                    <label asp-for="funcionario.Departamento_Id"> Departamento </label>
+                    <select asp-for="funcionario.Departamento_Id" class="form-select" aria-label="Departamento">
+                        <option value=0 selected>Selecione</option>
+                        @foreach (Departamento registro in Model.departamento)
+                        {
+                            <option value=@registro.Id>@registro.Nome</option>
+                        }
                     </select>
                 </div>
 
                 @* Acesso *@
                 <div class="col mb-3">
-                    <label asp-for="Acesso"> Acesso </label>
-                    <select asp-for="Acesso" class="form-select" aria-label="Acesso">
+                    <label asp-for="funcionario.Acesso"> Acesso </label>
+                    <select asp-for="funcionario.Acesso" class="form-select" aria-label="Acesso">
                         <option selected>Selecione</option>
                         <option value="Admin">Admin</option>
                         <option value="Gerente">Gerente</option>
