@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using myte.Models;
 using myte.Services;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
 {
+   
     public class FuncController : Controller
     {
         private FuncionarioService _funcionarioService;

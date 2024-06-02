@@ -1,4 +1,5 @@
-﻿using myte.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using myte.Models;
 
 namespace myte.Services
 {
@@ -21,7 +22,6 @@ namespace myte.Services
         }
 
         //resgata apenas 1 Funcionario
-
         public async Task<Funcionario> GetFuncionarioByIdAsync(string email)
         {
             var apiResposta = await _httpClient.GetFromJsonAsync<Funcionario>($"/api/Funcionario/GetOne/{email}");

@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using myte.Models;
@@ -39,6 +40,12 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
+
+// 02/06
+// Configura uma política de autorização global que exige que todos os usuários estejam autenticados
+
+
+//-----------------------------------------------
 
 
 var app = builder.Build();

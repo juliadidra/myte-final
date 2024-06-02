@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Win32;
 using myte.Models;
 using myte.Services;
@@ -6,6 +7,7 @@ using System.Data;
 
 namespace myte.Controllers
 {
+    
     public class DepartamentoController : Controller
     {
         private DepartamentoService _departamentoService;
