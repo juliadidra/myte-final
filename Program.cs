@@ -19,6 +19,7 @@ builder.Services.AddScoped<RegistroHorasService>();
 builder.Services.AddScoped<DepartamentoService>();
 builder.Services.AddScoped<FuncionarioService>();
 builder.Services.AddScoped<LoginService>();
+builder.Services.AddScoped<CriarAcessoService>();
 /***** Primeiro bloco unifica os serviços para a aplicação funcionar *****/
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

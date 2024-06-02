@@ -71,7 +71,7 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
                 try
                 {
                     await _funcionarioService.AddFuncionarioAsync(funcionario);
-                    return RedirectToAction(nameof(ListaFuncionarios));
+                    return RedirectToAction("Create", "User");
                 }
                 catch (Exception ex)
                 {

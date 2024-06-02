@@ -10,9 +10,12 @@ namespace myte.Controllers
     {
         private LoginService _loginService;
 
-        public UserController(LoginService loginService)
+        private CriarAcessoService _criarAcessoService;
+
+        public UserController(LoginService loginService, CriarAcessoService criarAcessoService)
         {
             _loginService = loginService;
+            _criarAcessoService = criarAcessoService;
         }
 
         public ViewResult Login() => View();
@@ -34,9 +37,23 @@ namespace myte.Controllers
             return View(login);
         }
 
-        public IActionResult Create()
+        public ViewResult Create() => View();
+
+        [HttpPost]
+        public async Task<IActionResult> Create(User user)
         {
-            return View();
+
+            try
+            {
+                await _criarAcessoService.AddAcessoAsync(user);
+                return RedirectToAction("ListaFuncionarios", "Func");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Erro ao tentar se logar");
+            }
+
+            return View(user);
 
         }
     }
