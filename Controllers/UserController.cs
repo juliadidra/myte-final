@@ -16,6 +16,7 @@ namespace myte.Controllers
 
         private FuncionarioService _funcionarioService;
 
+
         public UserController(LoginService loginService, CriarAcessoService criarAcessoService, FuncionarioService funcionarioService)
         {
             _loginService = loginService;
@@ -49,9 +50,31 @@ namespace myte.Controllers
             }
 
             return View(login);
-                
-        
+                       
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            bool logout = await _loginService.LogoutAsync();
+
+            if(logout)
+            {
+                HttpContext.Session.Clear();
+                return RedirectToAction("Login", "User");
+            }
+            else
+            {
+              
+                ModelState.AddModelError(string.Empty, "Erro ao realizar logout.");
+                return View();
+            }
+
+
+        }
+
+
 
         public ViewResult Create() => View();
 

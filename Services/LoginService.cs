@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using myte.Models;
 
@@ -27,7 +28,15 @@ namespace myte.Services
             return await apiResposta.Content.ReadFromJsonAsync<Login>();
 
         }
-       
+
+        public async Task<bool> LogoutAsync()
+        {
+            var apiResposta = await _httpClient.PostAsync($"/api/Account/Logout/Logout", null);
+            return apiResposta.IsSuccessStatusCode;
+
+        }
+
+
 
 
     }

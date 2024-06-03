@@ -13,6 +13,15 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient();
 
+// 06/03
+
+builder.Services.AddHttpClient<LoginService>();
+
+builder.Services.AddSession();
+
+builder.Services.AddDistributedMemoryCache();
+
+//-------------------------------------------
 
 
 builder.Services.AddScoped<WbsService>();
@@ -58,6 +67,11 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// 03/06
+
+app.UseSession(); // Adicione isso para usar sessões
+//------------------------------
 
 
 //3° Adiciona o método que auxilia na aplicação dos processos de autenticação de usuários para área restrita
