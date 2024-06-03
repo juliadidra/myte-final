@@ -30,23 +30,27 @@ namespace myte.Controllers
         public async Task<IActionResult> Login(Login login)
         {
 
-            var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(login.Email);               
+            var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(login.Email);
             try
             {
-             await _loginService.AddLoginAsync(login);
-                if (funcionario != null && funcionario.Acesso == "Admin")
-                {
-                 return RedirectToAction("Home", "Home");
+                await _loginService.AddLoginAsync(login);
 
-                }
-                else 
+                if (funcionario != null)
                 {
-                 return RedirectToAction("Index", "Calendar");
+                    HttpContext.Session.SetString("UserEmail", funcionario.Email); // Armazenando o email na sessão
+                    if (funcionario.Acesso == "Admin")
+                    {
+                        return RedirectToAction("Home", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Calendar");
+                    }
                 }
             }
             catch (Exception ex)
             {
-             ModelState.AddModelError(string.Empty, "Erro ao tentar se logar");
+                ModelState.AddModelError(string.Empty, "Erro ao tentar se logar");
             }
 
             return View(login);

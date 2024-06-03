@@ -1,27 +1,42 @@
 ﻿
 
     <header>
-        <div class=" header-user  bg-white border-bottom box-shadow mb-1">
-            <div>
+        <div class=" header-func  
+                     bg-white border-bottom box-shadow mb-1">
+
+            <div class="header-logo">
                 @* Container com o icon Home e Texto *@
-                <a class="container-home" asp-area="" asp-controller="Home" asp-action="Home">
-                    <img class="icon-home" id="home" src="/assets/icon-home.svg" alt="">
-                    <button asp-action="Index" type="button" class="btn btn-link">
-                        Painel Etym
-                    </button>
-                </a>
+                 <img class="icon-home" id="home" src="/assets/icones_home-painel.svg" alt="">
+                <span class="user-name  texto-PainelEtym">
+                    Painel Etym
+                </span>  
             </div>
 
             <div class="user-user">
-                <span class="user-name"> Nome do Funcionário </span>
-                <a class="user-img " asp-area=""
-                   asp-controller=""
-                   asp-action="Index">
-                    <img id="home" src="~/assets/User-default.svg"
+                <div class="user-img ">
+                <span class="user-name">
+                    @Context.Session.GetString("UserEmail") <!-- Exibindo o email do usuário -->
+                </span>
+
+                    <img id="home"
+                        src="~/assets/User-default.svg"
                          class="icon-user"
-                         alt="Imagem User">
-                </a>
-            </div>
+                        alt="Imagem User">
+                </div>
+             
+                
+                <form method="post" asp-controller="User" asp-action="Logout">
+                    <button type="submit" class=" btn button-Sai">
+                        <img id="home" 
+                                src="~/assets/icon_Logout.svg"
+                                class="icon-user"
+                                alt="Imagem User"
+                            >
+                    </button>
+                </form>                
+            </div>         
+
+           
         </div>
     </header>
  
