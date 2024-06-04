@@ -53,7 +53,7 @@ namespace myte.Services
 
         public async Task DeleteWbsAsync(string codigo)
         {
-            var apiResposta = await _httpClient.DeleteAsync($"/api/WBS/DeleteWBS/{codigo}");
+  var apiResposta = await _httpClient.DeleteAsync($"/api/WBS/DeleteWBS/{codigo}");
             apiResposta.EnsureSuccessStatusCode();
         }
     }

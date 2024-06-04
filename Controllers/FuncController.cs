@@ -19,22 +19,31 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
         }
 
         //1 tarefa crud: Read - Leitura e recuperação de dados
-        public async Task<IActionResult> ListaFuncionarios()
+  public async Task<IActionResult> ListaFuncionarios(string email = null)
+{
+    try
+    {
+        if (!string.IsNullOrEmpty(email))
         {
-            try
+            // Se um email foi fornecido, buscar apenas o funcionário com esse email
+            var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(email);
+            if (funcionario != null)
             {
-                var funcionario = await _funcionarioService.GetAllFuncionarioAsync();
-                return View(funcionario);
+                return View(new List<Funcionario> { funcionario });
             }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, "Não foi possivel listar os registro de funcionario");
-                return View(new List<Funcionario>());
-            }
-
         }
 
-        //2 tarefa assincrona crud: seleção de registro
+        // Se nenhum email foi fornecido, retornar todos os funcionários
+        var funcionarios = await _funcionarioService.GetAllFuncionarioAsync();
+        return View(funcionarios);
+    }
+    catch (Exception ex)
+    {
+        ModelState.AddModelError(string.Empty, "Não foi possivel listar os registro de funcionario");
+        return View(new List<Funcionario>());
+    }
+}
+      
         public ViewResult GetFuncionarioUnico() => View();
 
         [HttpPost]
@@ -47,7 +56,8 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
             {
                 return NotFound();
             }
-            return View(funcionario);
+
+            return RedirectToAction("ListaFuncionarios", new { email = funcionario.Email });
         }
 
         public async Task<IActionResult> AdicionarFuncionario()

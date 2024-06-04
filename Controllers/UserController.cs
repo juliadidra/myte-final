@@ -30,10 +30,29 @@ namespace myte.Controllers
         public async Task<IActionResult> Login(Login login)
         {
 
+<<<<<<< Updated upstream
             var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(login.Email);
             try
             {
                 await _loginService.AddLoginAsync(login);
+=======
+                  
+
+            try
+            {
+                var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(login.Email);
+
+                if (funcionario == null)
+                {
+                    TempData["ErrorMessage"] = "Não é possivel realizar o login";
+                    return View();
+                }
+
+                await _loginService.AddLoginAsync(login);
+                if (funcionario.Acesso == "Admin")
+                {
+                 return RedirectToAction("Home", "Home");
+>>>>>>> Stashed changes
 
                 if (funcionario != null)
                 {
@@ -50,10 +69,16 @@ namespace myte.Controllers
             }
             catch (Exception ex)
             {
+<<<<<<< Updated upstream
                 ModelState.AddModelError(string.Empty, "Erro ao tentar se logar");
+=======
+                TempData["ErrorMessage"] = "Não é possivel realizar o login";
+                return View();
+
+>>>>>>> Stashed changes
             }
 
-            return View(login);
+            
                        
         }
 

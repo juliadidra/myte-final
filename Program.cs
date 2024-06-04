@@ -32,13 +32,18 @@ builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<CriarAcessoService>();
 /***** Primeiro bloco unifica os serviços para a aplicação funcionar *****/
 
+/*
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
                 options.LoginPath = "/User/Login";
                 options.LogoutPath = "/User/Logout";
-            });
 
+
+                options.ExpireTimeSpan = TimeSpan.Zero;
+                options.SlidingExpiration = true;
+            });
+*/
 
 //1° Adicionar o serviço de string de conexão com o servidor db
 builder.Services.AddDbContext<AppDbContext>((options) =>
@@ -52,6 +57,12 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
 
 // 02/06
 // Configura uma política de autorização global que exige que todos os usuários estejam autenticados
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+});
 
 
 //-----------------------------------------------

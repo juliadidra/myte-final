@@ -68,7 +68,7 @@
         @foreach(Wbs cadastro in Model)
         {
             <tr class="linha_tabela">
-                <form method="post" id="form_update">
+                <div id="form_update">
                 <td> @cadastro.Nome </td>
                 <td>  @cadastro.Codigo</td>
                 <td> @cadastro.Descricao </td>
@@ -85,16 +85,15 @@
                     </a>
                 </td>
                 <td>
-                    <form asp-action="DeleteWbs" method="post">
-                        <input type="hidden" value="@cadastro.Codigo" name="codigo" />
-                        <button type="submit" class="btn  botao_excluir_wbs confirm-action">
-                            <img src="~/assets/icon_delete.svg" class="icon_delete" />
+                    <form asp-action="DeleteWbs" asp-route-codigo="@cadastro.Codigo" method="post">
+                        <button type="submit" class="btn  botao_excluir_wbs confirm-action" data-id="@cadastro.Codigo">
+                          Excluir
 
                         </button>
                     </form>
 
                 </td>
-                </form>
+                </div>
                 
             </tr>
         }

@@ -34,11 +34,13 @@ namespace myte.Models
         [Required(ErrorMessage = "Selecione um cargo.")]
         public string? Cargo { get; set; }
 
-        [Required(ErrorMessage = "Selecione um departamento.")]
+       // [Required(ErrorMessage = "Selecione um departamento.")]
         public int? Departamento_Id { get; set; }
 
         [Required(ErrorMessage = "Selecione um tipo de acesso.")]
         public string? Acesso { get; set; }
+
+        public string? Departamento_Nome;
 
         /*// Adicione a foto do funcionário
         public byte[]? Foto { get; set; }*/

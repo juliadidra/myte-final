@@ -35,7 +35,7 @@
         <form method="post" class="form_criar_wbs">
             <div class="div_inputs">
                 <label asp-for="Nome"></label>
-                <input asp-for="Nome" placeholder="Nome da WBS"/>
+                <input  asp-for="Nome" placeholder="Nome da WBS"/>
                 <span></span>
             </div>
 
@@ -56,11 +56,19 @@
                 <label asp-for="DataCriacao"></label>
                 <input asp-for="DataCriacao" type="date" />
                 <span></span>
-            </div>
+            </div>          
 
             <div class="div_tipo">
-                <input type="radio" asp-for="Tipo" value="Chargeability">Chargeability
-                <input type="radio" asp-for="Tipo" value="Non-Chargeability">Non-Chargeability
+                <label asp-for="Tipo">Tipo</label>
+                <select asp-for="Tipo"
+                        class="form-select @(ViewData.ModelState["Tipo"]?.Errors.Count > 0 ? "is-invalid" : "")"
+                        aria-label="Tipo">
+                    <option selected>Selecione</option>
+                    <option value="Chargeability">Chargeability</option>
+                    <option value="Nochargeabilit">Nochargeabilit</option>
+                </select>
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+
                 <span></span>
             </div>
 

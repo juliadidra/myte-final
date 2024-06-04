@@ -20,7 +20,7 @@
 
             <div class="div_inputs">
                 <label asp-for="Codigo"></label>
-                <input asp-for="Codigo" placeholder="Entre 4 e 10 caracteres (apenas letras e números)" />
+                <input readonly asp-for="Codigo" placeholder="Entre 4 e 10 caracteres (apenas letras e números)" />
                 <span></span>
             </div>
 
@@ -39,7 +39,7 @@
 
             <div class="div_tipo">
                 <input type="radio" asp-for="Tipo" value="Chargeability">Chargeability
-                <input type="radio" asp-for="Tipo" value="Non-Chargeability">Non-Chargeability
+                <input type="radio" asp-for="Tipo" value="NoChargeability">NoChargeability
                 <span></span>
             </div>
 

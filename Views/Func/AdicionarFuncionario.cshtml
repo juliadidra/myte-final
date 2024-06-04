@@ -165,6 +165,7 @@
                         @foreach (Departamento registro in Model.departamento)
                         {
                             <option value=@registro.Id>@registro.Nome</option>
+
                         }
                         @* <option value="Suporte">Suporte Técnico</option>
                         <option value="Desenvolvimento">Desenvolvimento</option>
@@ -177,9 +178,11 @@
                         <option value="TI">TI</option>
                         <option value="Infra">Infra Estrutura</option>
                         <option value="RH">Recursos Humanos</option>*@
-                    </select>
+                    </select>                 
                     <span asp-validation-for="funcionario.Departamento_Id" class="text-danger"></span>
                 </div>
+
+          
 
                 @* Acesso *@
                 <div class="col mb-3">

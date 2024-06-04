@@ -9,8 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     
+    <link rel="https://cdn.datatables.net/v/dt/dt-2.0.8/datatables.min.css" href="stylesheet">
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/myte.styles.css" asp-append-version="true" />
+
+    
+    
+
+   
+  
+
+   
+
+
+    
    
 
     @*Fonte padrão*@
@@ -35,6 +48,9 @@
 
 
 
+    
+
+
 
     @* ======================= *@
 
@@ -46,9 +62,9 @@
 <body>
  
     @RenderBody()
-            
-    
 
+
+   
   
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -60,6 +76,8 @@
     <script src="~/js/user.js"></script>
     <script src="~/js/navbar.js"></script>
     <script src="~/js/pesquisa.js"></script>
+
+    <script src="https://cdn.datatables.net/v/dt/dt-2.0.8/datatables.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

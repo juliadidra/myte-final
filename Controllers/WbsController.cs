@@ -135,7 +135,9 @@ namespace myte.Controllers
             await _wbsService.DeleteWbsAsync(codigo);
             return RedirectToAction(nameof(Index));
 
-            TempData["SuccessMessageDelete"] = "exclusao realizada com sucesso!";
+        }
+
+           // TempData["SuccessMessageDelete"] = "exclusao realizada com sucesso!";
 
 
             /*try
@@ -150,6 +152,6 @@ namespace myte.Controllers
                 TempData["ErrorMessageDelete"] = "Não é possivel prosseguir com a ação";
                 return Redirect("Index");
             }*/
-        }
+        
     }
 }

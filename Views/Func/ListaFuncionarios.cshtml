@@ -2,10 +2,14 @@
 
 @{
     ViewData["Title"] = "Gestão de funcionarios";
+
+    var funcionarioPesquisado = TempData["funcionario"] as Funcionario;
 }
 
 <partial name="_Header" model="Model"></partial>
 <partial name="_NavBar" model="Model"></partial>
+
+
 @if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -30,10 +34,17 @@
 @* Botão criar WBS e pesquisar - O CSS está no departamente  *@
 <div class="d-flex justify-content-end  mb-3 container-pesquisarEhNewbedepart">
     <div class="div d-flex d-flex my-auto h-25   container-search">
-        <input type="search" placeholder="Funcionário" class=" input_search-depart" />
-        <button class="botao_search-depart"><img src="~/assets/icon_lupa.svg" /></button>
+        @using (Html.BeginForm("GetFuncionarioUnico", "Func", FormMethod.Post))
+        {
+            <input type="search" name="email" placeholder="Funcionário" class=" input_search-depart" />
+            <button class="botao_search-depart"><img src="~/assets/icon_lupa.svg" /></button>
+        }
     </div>
 
+
+
+
+    @* Botão criar WBS e pesquisar - O CSS está no departamente  *@
     <a class="btn btn-primary botao_criar_departamento" asp-controller="Func"
        asp-action="AdicionarFuncionario">
         <img src="~/assets/icone-admissao-admin.svg" class="icone_plus" />
@@ -42,13 +53,12 @@
 </div>
 
 
-
 @* listagem dos Funcionários*@
 
 <div class="container_TodosFunc">
     @foreach (Funcionario registro in Model)
     {
-        <div class=" container_CardFuncionario">
+        <div class=" container_CardFuncionario  @(funcionarioPesquisado != null && funcionarioPesquisado.Email == registro.Email ? "highlight" : "")">
             <article class=" card_Func">
 
                 @* Imagem Funcionário*@
@@ -64,7 +74,7 @@
                         @registro.Cargo
                     </span>
                     <span class="item_text-depart">
-                        @registro.Departamento_Id;
+                        @registro.Departamento_Id
                     </span>
                 </div>
 
