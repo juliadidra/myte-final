@@ -1,0 +1,22 @@
+﻿
+@* Fazer referência a partir da Model *@
+@model Dashboard
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<partial name="_Header" model="Model"></partial>
+<partial name="_NavBar" model="Model"></partial>
+
+<!-- AddIframe View -->
+<form method="post">
+    <h1> Dashboard Funcionários-MyTE </h1>
+    <label asp-for="IframeUrl">URL do Iframe:</label>
+    <input asp-for="IframeUrl" type="text" id="iframeUrl" name="iframeUrl" >
+    <div>
+        <button asp-action="Index" class="botao-cancelar-depart">Cancelar</button>
+        <button type="submit">Visualizar Dashboard</button>
+    </div>
+
+</form>
