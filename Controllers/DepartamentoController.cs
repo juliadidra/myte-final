@@ -104,16 +104,27 @@ namespace myte.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            //criar a requisição de selção do registro para ser excluido
-            var departamento = await _departamentoService.GetDepartamentoByIdAsync(id);
-            if (departamento == null)
+            try
             {
-                return NotFound();
+                //criar a requisição de selção do registro para ser excluido
+                var departamento = await _departamentoService.GetDepartamentoByIdAsync(id);
+                if (departamento != null)
+                {
+                    await _departamentoService.DeleteDepartamentoAsync(id);
+                    TempData["SuccessMessage"] = "exclusao realizada com sucesso!";
+                    return RedirectToAction(nameof(Index));
+                }
+
+            } 
+            catch (Exception ex) 
+            {
+                TempData["ErrorMessage"] = "Não é possivel excluir o registro";
+              
                 //TempData["ErrorMessage"] = "Não é possivel prosseguir com a ação";
             }
-            await _departamentoService.DeleteDepartamentoAsync(id);
-            TempData["SuccessMessage"] = "exclusao realizada com sucesso!";
+
             return RedirectToAction(nameof(Index));
+
         }
 
     }
