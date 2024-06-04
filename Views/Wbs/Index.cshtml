@@ -87,7 +87,8 @@
                 <td>
                     <form asp-action="DeleteWbs" asp-route-codigo="@cadastro.Codigo" method="post">
                         <button type="submit" class="btn  botao_excluir_wbs confirm-action" data-id="@cadastro.Codigo">
-                          Excluir
+                            <img src="~/assets/icon-delete.svg"
+                                 class="icon_edit">
 
                         </button>
                     </form>
