@@ -4,26 +4,35 @@
     ViewData["Title"] = "Atualizar registro";
 }
 
-<h2>@ViewData["Title"]</h2>
+
+<partial name="_Header" model="Model"></partial>
+<partial name="_NavBar" model="Model"></partial>
 
 
-<div class="master-depart-frorm-criar">
-    <div class="centro">
+
+
+<div class="container-Update">
+    <div class="card-Update ">
         <!-- Conteúdo da div aqui -->
+        <div class="container-form-Update  align-items-center">
+            <form class="btn-group flex-column" method="post">
+                <div class="label-titulo">
+                    <h2>@ViewData["Title"]</h2>
+                </div>
+                <div class="label-update-nome-departamento">
+                    <label asp-for="Nome">Nome do Departamento</label>
+                    <input class="text-input" asp-for="Nome" />
+                </div>
 
-        <form class="frame-parent" method="post">
-            <div class="label-titulo">
-                <p>Criar Departamento</p>
-            </div>
-            <div class="label"><label asp-for="Nome">Nome do Departamento</label></div>
+                <div class="botoes-criar-departamento">
+                    <button asp-action="Index" class="botao-cancelar-depart">Cancelar</button>
+                    <button class="botao-salvar-depart" type="submit">Salvar</button>
 
-            <input class="text-input" asp-for="Nome" />
+                </div>
+            </form>
 
-            <div class="botoes-criar-departamento">
-                <button asp-action="Index" class="botao-cancelar-depart">Cancelar</button>
-                <button class="botao-salvar-depart" type="submit">Salvar</button>
+        </div>
 
-            </div>
-        </form>
+       
     </div>
 </div>

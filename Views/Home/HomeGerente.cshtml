@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<partial name="_Header" model="Model"></partial>
+
+<nav class="nav_principal_home">
+    <ul class="navegacao_lista-home">
+       
+        <li>
+            <a class="nav-item" asp-area="" asp-controller="Dashboard" asp-action="Index">
+                <img src="/assets/dashboard-adm.svg" class="nav-image" alt="...">
+                Dashboard
+            </a>
+        </li>       
+        <li>
+            <a class="nav-item" asp-area="" asp-controller="Calendar" asp-action="Index">
+                <img src="/assets/myte-adm.svg" class="nav-image" alt="...">
+                MyTE
+            </a>
+        </li>
+        
+    </ul>
+
+</nav>

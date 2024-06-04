@@ -29,8 +29,26 @@
 }
 
 @*  =============================================================================================  *@
+@using (Html.BeginForm("Index", "Departamento", FormMethod.Get))
+{
+    <div class="d-flex justify-content-end  mb-3 container-pesquisarEhNewbedepart">
+        <div class="div d-flex d-flex my-auto h-25   container-search">
+            <input type="search" name="searchString" placeholder="Departamento" class=" input_search-depart" />
+            <button type="submit" class="botao_search-depart"><img src="~/assets/icon_lupa.svg" /></button>
+        </div>
 
-@* Botão criar departamento e pesquisar *@
+        <a class="btn btn-primary botao_criar_departamento"
+           asp-controller="Departamento" asp-action="Create">
+            <img src="~/assets/icon_add.svg" class="icone_plus" />
+            Criar Departamento
+        </a>
+    </div>
+}
+
+
+
+
+@* Botão criar departamento e pesquisar 
 <div class="d-flex justify-content-end  mb-3 container-pesquisarEhNewbedepart">
     <div class="div d-flex d-flex my-auto h-25   container-search">
         <input type="search" placeholder="Departamento" class=" input_search-depart" />
@@ -42,7 +60,7 @@
         <img src="~/assets/icon_add.svg" class="icone_plus" />
         Criar Departamento
     </a>
-</div>
+</div>*@
 
 
 @* listagem dos departamentos*@

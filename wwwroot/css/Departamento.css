@@ -108,6 +108,8 @@ a {
     border-radius: 20px;
 }
 
+
+
 .botao-atualizar-excluir {
     font-size: 0.8rem; /* Tamanho da fonte 80% menor */
     padding: 0.25rem 0.5rem; /* Padding menor */
@@ -254,4 +256,34 @@ a {
 .botao-cancelar-depart:hover {
     background-color: #414141;
     color: #fff
+}
+
+
+/*Página Update do Departamento*/
+
+.container-Update {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-Update {
+    
+}
+.container-form-Update {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    background: #ffff;
+    padding: 1rem 1rem 2rem 1rem;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+}
+
+.label-update-nome-departamento {
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;
 }
