@@ -6,7 +6,7 @@
     var funcionarioPesquisado = TempData["funcionario"] as Funcionario;
 }
 
-<partial name="_Header" model="Model"></partial>
+
 <partial name="_NavBar" model="Model"></partial>
 
 
@@ -31,7 +31,9 @@
 }
 
 
-@* Botão criar WBS e pesquisar - O CSS está no departamente  *@
+
+
+
 <div class="d-flex justify-content-end  mb-3 container-pesquisarEhNewbedepart">
     <div class="div d-flex d-flex my-auto h-25   container-search">
         @using (Html.BeginForm("GetFuncionarioUnico", "Func", FormMethod.Post))

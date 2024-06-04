@@ -6,7 +6,7 @@ using myte.Services;
 
 namespace myte.Controllers
 {
-    
+
     //Operações CRUD do Cadastro de dados
     public class UserController : Controller
     {
@@ -30,13 +30,7 @@ namespace myte.Controllers
         public async Task<IActionResult> Login(Login login)
         {
 
-<<<<<<< Updated upstream
-            var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(login.Email);
-            try
-            {
-                await _loginService.AddLoginAsync(login);
-=======
-                  
+
 
             try
             {
@@ -51,35 +45,23 @@ namespace myte.Controllers
                 await _loginService.AddLoginAsync(login);
                 if (funcionario.Acesso == "Admin")
                 {
-                 return RedirectToAction("Home", "Home");
->>>>>>> Stashed changes
+                    return RedirectToAction("Home", "Home");
 
-                if (funcionario != null)
+                }
+                else
                 {
-                    HttpContext.Session.SetString("UserEmail", funcionario.Email); // Armazenando o email na sessão
-                    if (funcionario.Acesso == "Admin")
-                    {
-                        return RedirectToAction("Home", "Home");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Calendar");
-                    }
+                    return RedirectToAction("Index", "Calendar");
                 }
             }
             catch (Exception ex)
             {
-<<<<<<< Updated upstream
-                ModelState.AddModelError(string.Empty, "Erro ao tentar se logar");
-=======
                 TempData["ErrorMessage"] = "Não é possivel realizar o login";
                 return View();
 
->>>>>>> Stashed changes
             }
 
-            
-                       
+
+
         }
 
 
@@ -88,21 +70,20 @@ namespace myte.Controllers
         {
             bool logout = await _loginService.LogoutAsync();
 
-            if(logout)
+            if (logout)
             {
                 HttpContext.Session.Clear();
                 return RedirectToAction("Login", "User");
             }
             else
             {
-              
+
                 ModelState.AddModelError(string.Empty, "Erro ao realizar logout.");
                 return View();
             }
 
 
         }
-
 
 
         public ViewResult Create() => View();

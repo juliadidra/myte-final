@@ -7,7 +7,7 @@ using System.Data;
 
 namespace myte.Controllers
 {
-    
+
     public class DepartamentoController : Controller
     {
         private DepartamentoService _departamentoService;
@@ -18,20 +18,11 @@ namespace myte.Controllers
         }
 
         //1 tarefa crud: Read - Leitura e recuperação de dados
-        //Modificar o método Index para aceitar um parâmetro string searchString.
-        //Esse parâmetro será usado para filtrar os departamentos. 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index()
         {
             try
             {
                 var departamento = await _departamentoService.GetAllDepartamentosAsync();
-
-                //trecho adicionado para implementar uma condição 
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    departamento = departamento.Where(s => s.Nome.Contains(searchString)).ToList();
-                }
-
                 return View(departamento);
             }
             catch (Exception ex)

@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
 {
-   
+
     public class FuncController : Controller
     {
         private FuncionarioService _funcionarioService;
@@ -19,31 +19,31 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
         }
 
         //1 tarefa crud: Read - Leitura e recuperação de dados
-  public async Task<IActionResult> ListaFuncionarios(string email = null)
-{
-    try
-    {
-        if (!string.IsNullOrEmpty(email))
+        public async Task<IActionResult> ListaFuncionarios(string email = null)
         {
-            // Se um email foi fornecido, buscar apenas o funcionário com esse email
-            var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(email);
-            if (funcionario != null)
+            try
             {
-                return View(new List<Funcionario> { funcionario });
+                if (!string.IsNullOrEmpty(email))
+                {
+                    // Se um email foi fornecido, buscar apenas o funcionário com esse email
+                    var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(email);
+                    if (funcionario != null)
+                    {
+                        return View(new List<Funcionario> { funcionario });
+                    }
+                }
+
+                // Se nenhum email foi fornecido, retornar todos os funcionários
+                var funcionarios = await _funcionarioService.GetAllFuncionarioAsync();
+                return View(funcionarios);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Não foi possivel listar os registro de funcionario");
+                return View(new List<Funcionario>());
             }
         }
 
-        // Se nenhum email foi fornecido, retornar todos os funcionários
-        var funcionarios = await _funcionarioService.GetAllFuncionarioAsync();
-        return View(funcionarios);
-    }
-    catch (Exception ex)
-    {
-        ModelState.AddModelError(string.Empty, "Não foi possivel listar os registro de funcionario");
-        return View(new List<Funcionario>());
-    }
-}
-      
         public ViewResult GetFuncionarioUnico() => View();
 
         [HttpPost]

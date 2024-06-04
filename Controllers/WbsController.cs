@@ -137,21 +137,21 @@ namespace myte.Controllers
 
         }
 
-           // TempData["SuccessMessageDelete"] = "exclusao realizada com sucesso!";
+        // TempData["SuccessMessageDelete"] = "exclusao realizada com sucesso!";
 
 
-            /*try
-            {
-                Wbs consulta = Repository.TodasAsWbs.Where((r) => r.Codigo == id).First();
-                Repository.Excluir(consulta);
-                
-                
-            }
-            catch
-            {
-                TempData["ErrorMessageDelete"] = "Não é possivel prosseguir com a ação";
-                return Redirect("Index");
-            }*/
-        
+        /*try
+        {
+            Wbs consulta = Repository.TodasAsWbs.Where((r) => r.Codigo == id).First();
+            Repository.Excluir(consulta);
+
+
+        }
+        catch
+        {
+            TempData["ErrorMessageDelete"] = "Não é possivel prosseguir com a ação";
+            return Redirect("Index");
+        }*/
+
     }
 }
