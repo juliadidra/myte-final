@@ -40,7 +40,6 @@ namespace myte.Models
         [Required(ErrorMessage = "Selecione um tipo de acesso.")]
         public string? Acesso { get; set; }
 
-        public string? Departamento_Nome;
 
         /*// Adicione a foto do funcionário
         public byte[]? Foto { get; set; }*/
