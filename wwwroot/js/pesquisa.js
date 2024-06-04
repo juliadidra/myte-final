@@ -17,3 +17,18 @@ $(document).ready(function () {
         });
     });
 });
+
+/*
+$(document).ready(function () {
+    $(".input_search-func").on("input", function () {
+        var searchValue = $(this).val();
+        $.ajax({
+            url: '@Url.Action("ListaFuncionarios", "Func")',
+            data: { searchString: searchValue },
+            success: function (data) {
+                $("#funcionarioList").html(data);
+            }
+        });
+    });
+});
+*/
