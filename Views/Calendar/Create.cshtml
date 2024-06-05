@@ -1,20 +1,16 @@
-﻿@model RegistroHoras
+﻿@model myte.Models.RegistroHoras
 
-@{
-    ViewData["Title"] = "Create";
-}
+<h2>Criar Registro de Horas</h2>
 
-<h1>Create Registro de Horas</h1>
-
-<form method="post">
+<form asp-action="Create">
     <div class="form-group">
         <label asp-for="Horas" class="control-label"></label>
-        <input asp-for="Horas" class="form-control" type="number" />
+        <input asp-for="Horas" class="form-control" />
         <span asp-validation-for="Horas" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Dia" class="control-label"></label>
-        <input asp-for="Dia" class="form-control" type="date" id="Id" />
+        <input asp-for="Dia" class="form-control" type="date" />
         <span asp-validation-for="Dia" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -22,14 +18,15 @@
         <select asp-for="WBS_Codigo" class="form-control" asp-items="@(new SelectList(ViewBag.WbsList, "Codigo", "Nome"))"></select>
         <span asp-validation-for="WBS_Codigo" class="text-danger"></span>
     </div>
-    <input type="hidden" asp-for="Funcionario_Email" value="julia@email.com" />
-
+    <input type="hidden" asp-for="Funcionario_Email" value="joao@email.com" />
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <input type="submit" value="Criar" class="btn btn-primary" />
+        <a asp-action="Index" asp-route-email="@ViewBag.Email" class="btn btn-secondary">Cancelar</a>
     </div>
 </form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

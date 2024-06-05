@@ -16,50 +16,56 @@ namespace myte.Controllers
         }
 
 
-        public async Task<IActionResult> Index(int quinzena = 1)
+        public async Task<IActionResult> Index(string email)
         {
+            if (string.IsNullOrEmpty(email))
+            {
+                email = "joao@email.com"; // Use o email padrão, substitua conforme necessário
+            }
+
             var wbsList = await _wbsService.GetAllWbsAsync();
-            var registroHorasList = await _registroHorasService.GetRegistroHorasAsync();
+            var registroHorasList = (await _registroHorasService.GetRegistroHorasAsync()).Where(r => r.Funcionario_Email == email).ToList();
 
             var model = new CalendarPageViewModel
             {
                 WbsList = wbsList,
-                RegistroHorasList = registroHorasList,
-                Quinzena = quinzena,
-                CalendarDays = GetCalendarDays(DateTime.Now, quinzena, registroHorasList)
+                RegistroHorasList = registroHorasList
             };
+
+            ViewBag.Email = email;
             return View(model);
         }
 
 
 
 
-        public async Task<IActionResult> Create()
+        [HttpGet]
+        public async Task<IActionResult> Create(string email)
         {
+            ViewBag.Email = email;
             ViewBag.WbsList = await _wbsService.GetAllWbsAsync();
             return View();
         }
 
         [HttpPost]
-
         public async Task<IActionResult> Create(RegistroHoras registroHoras)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-
                     await _registroHorasService.AddRegistroHorasAsync(registroHoras);
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Index), new { email = registroHoras.Funcionario_Email });
                 }
-                catch (Exception e)
+                catch (HttpRequestException e)
                 {
-                    // Log the error message
                     Console.WriteLine($"Request error: {e.Message}");
                     ModelState.AddModelError(string.Empty, "Erro ao enviar os dados para a API.");
                 }
             }
+
             ViewBag.WbsList = await _wbsService.GetAllWbsAsync();
+            ViewBag.Email = registroHoras.Funcionario_Email;
             return View(registroHoras);
         }
 
@@ -97,13 +103,13 @@ namespace myte.Controllers
 
 
 
+        [HttpGet]
         public async Task<IActionResult> UpdateRegistroHoras(int id)
         {
             var registroHoras = await _registroHorasService.GetRegistroHorasByIdAsync(id);
             if (registroHoras == null)
             {
-
-                TempData["ErrorMessage"] = "Não é possivel realizar o login";
+                return NotFound();
             }
 
             ViewBag.WbsList = await _wbsService.GetAllWbsAsync();
@@ -111,12 +117,10 @@ namespace myte.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> UpdateRegistroHoras(int id, RegistroHoras registroHoras)
         {
             if (id != registroHoras.Id)
             {
-
                 return BadRequest();
             }
 
@@ -125,11 +129,10 @@ namespace myte.Controllers
                 try
                 {
                     await _registroHorasService.UpdateRegistroHorasAsync(id, registroHoras);
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Index), new { email = registroHoras.Funcionario_Email });
                 }
                 catch (HttpRequestException e)
                 {
-                    // Log the error message
                     Console.WriteLine($"Request error: {e.Message}");
                     ModelState.AddModelError(string.Empty, "Erro ao enviar os dados para a API.");
                 }

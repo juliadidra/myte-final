@@ -4,17 +4,12 @@
 {
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         @TempData["ErrorMessage"]
-        @* <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-    </button> *@
     </div>
 }
 
 <h2>Registro de Horas</h2>
 
-
-
-<a asp-action="Create" asp-controller="Calendar" class="btn btn-primary botao_create_horas"> Registrar horas</a>
+<a asp-action="Create" asp-controller="Calendar" class="btn btn-primary botao_create_horas">Registrar horas</a>
 
 <div class="calendar-container">
     <div class="calendar-header">
@@ -37,9 +32,6 @@
         </tbody>
     </table>
 </div>
-
-
-
 
 @section Scripts {
     <script>
@@ -109,23 +101,23 @@
                         const dateString = date.toISOString().split('T')[0];
 
                         const registro = registroHorasList.find(r => {
-                            const registroDate = parseDate(r.dia); // Verifique se r.dia é o nome correto
+                            const registroDate = parseDate(r.dia);
 
-                            console.log('Comparing dates:', registroDate, dateString, r.wbS_Codigo, wbs.codigo, r.id,);
+                            console.log('Comparing dates:', registroDate, dateString, r.wbS_Codigo, wbs.codigo, r.id);
                             return registroDate && registroDate.toISOString().split('T')[0] === dateString && r.wbS_Codigo === wbs.codigo;
-                            console.log(registro)
                         });
                         const registroId = registro ? registro.id : '';
-                        console.log(registroId)
+                        console.log(registroId);
                         const horas = registro ? registro.horas : '';
                         console.log('Horas:', horas);
 
                         cell.innerHTML = `
                                             <div>Dia ${day}</div>
                                             <div class="d-flex div_horas_edit">
-                                            <input type="number" value="${horas}" disabled class="input_horas" data-dia="${dateString}" data-wbs="${wbs.codigo}" />
-                                            <a href="/Calendar/UpdateRegistroHoras/${registroId}" class="botao_editar_horas" > <img src=\"/assets/icon_edit.svg\" class="img_edit_horas" > </a>
-
+                                                <input type="number" value="${horas}" disabled class="input_horas" data-dia="${dateString}" data-wbs="${wbs.codigo}" />
+                                                <a href="/Calendar/UpdateRegistroHoras/${registroId}" class="botao_editar_horas">
+                                                    <img src="/assets/icon_edit.svg" class="img_edit_horas">
+                                                </a>
                                             </div>`;
                         row.appendChild(cell);
                     }
@@ -154,8 +146,6 @@
             });
 
             renderCalendar();
-
-
         });
     </script>
 }
