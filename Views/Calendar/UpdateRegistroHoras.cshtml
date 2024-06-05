@@ -22,7 +22,7 @@
         <select asp-for="WBS_Codigo" class="form-control" asp-items="@(new SelectList(ViewBag.WbsList, "Codigo", "Nome"))"></select>
         <span asp-validation-for="WBS_Codigo" class="text-danger"></span>
     </div>
-    <input type="hidden" asp-for="Funcionario_Email" value="joao@email.com" />
+    <input type="hidden" asp-for="Funcionario_Email" value="@TempData.Peek("EmailUsuario")" />
     <div class="form-group">
         <input type="submit" value="Update" class="btn btn-primary" />
         <a asp-action="Index" asp-route-email="@ViewBag.Email" class="btn btn-secondary">Cancelar</a>
@@ -32,5 +32,4 @@
 <div>
     <a asp-action="Index">Registro Horas</a>
 </div>
-
 

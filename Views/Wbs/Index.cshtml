@@ -7,10 +7,10 @@
     ViewData["Title"] = "WBS cadastradas";
 }
 
- @* <link rel="stylesheet" href="/css/IndexWbs.css">  *@
+@* <link rel="stylesheet" href="/css/IndexWbs.css">  *@
 
 <partial name="_Header" model="Model"></partial>
- <partial name="_NavBar" model="Model"></partial>
+<partial name="_NavBar" model="Model"></partial>
 
 @if (TempData["ErrorMessage"] != null)
 {
@@ -25,8 +25,8 @@
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         @TempData["SuccessMessage"]
         @* <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button> *@
+    <span aria-hidden="true">&times;</span>
+    </button> *@
     </div>
 }
 
@@ -73,7 +73,7 @@
     </thead>
 
     <tbody class="tbody_wbs">
-        @foreach(Wbs cadastro in Model)
+        @foreach (Wbs cadastro in Model)
         {
             <tr class="linha_tabela">
                 <div id="form_update">
@@ -103,17 +103,11 @@
 
                 </td>
                 </div>
-                
+
             </tr>
         }
     </tbody>
 
 </table>
-
-
-
-
-
-
 
 

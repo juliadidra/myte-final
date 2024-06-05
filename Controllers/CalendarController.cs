@@ -16,12 +16,15 @@ namespace myte.Controllers
         }
 
 
-        public async Task<IActionResult> Index(string email)
+        public async Task<IActionResult> Index()
         {
+            string email = TempData.Peek("EmailUsuario") as string;
             if (string.IsNullOrEmpty(email))
             {
-                email = "joao@email.com"; // Use o email padrão, substitua conforme necessário
+                TempData["ErrorMessage"] = "Não é possivel recuperar o email"; // Use o email padrão, substitua conforme necessário
             }
+
+            ViewBag.Email = email;
 
             var wbsList = await _wbsService.GetAllWbsAsync();
             var registroHorasList = (await _registroHorasService.GetRegistroHorasAsync()).Where(r => r.Funcionario_Email == email).ToList();
@@ -40,8 +43,9 @@ namespace myte.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Create(string email)
+        public async Task<IActionResult> Create()
         {
+            string email = TempData.Peek("EmailUsuario") as string;
             ViewBag.Email = email;
             ViewBag.WbsList = await _wbsService.GetAllWbsAsync();
             return View();
@@ -55,6 +59,7 @@ namespace myte.Controllers
                 try
                 {
                     await _registroHorasService.AddRegistroHorasAsync(registroHoras);
+                    TempData["SuccessMessage"] = "Hora cadastrada com sucesso!";
                     return RedirectToAction(nameof(Index), new { email = registroHoras.Funcionario_Email });
                 }
                 catch (HttpRequestException e)
@@ -106,14 +111,23 @@ namespace myte.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateRegistroHoras(int id)
         {
-            var registroHoras = await _registroHorasService.GetRegistroHorasByIdAsync(id);
-            if (registroHoras == null)
-            {
-                return NotFound();
-            }
 
-            ViewBag.WbsList = await _wbsService.GetAllWbsAsync();
-            return View(registroHoras);
+            try
+            {
+                string email = TempData.Peek("EmailUsuario") as string;
+                var registroHoras = await _registroHorasService.GetRegistroHorasByIdAsync(id);
+                if (registroHoras != null)
+                {
+                    ViewBag.WbsList = await _wbsService.GetAllWbsAsync();
+                    return View(registroHoras);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Não é possivel editar, um registro que ainda não foi criado.";
+
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]

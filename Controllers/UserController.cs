@@ -29,15 +29,15 @@ namespace myte.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(Login login)
         {
-
-
-
             try
             {
                 var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(login.Email);
+                HttpContext.Session.SetString("UserEmail", funcionario.Email); // Armazenando o email na sessão
+                TempData["EmailUsuario"] = login.Email;
 
                 if (funcionario == null)
                 {
+
                     TempData["ErrorMessage"] = "Não é possivel realizar o login";
                     return View();
                 }
@@ -48,7 +48,7 @@ namespace myte.Controllers
                     return RedirectToAction("Home", "Home");
 
                 }
-                else if(funcionario.Acesso == "Gerente")
+                else if (funcionario.Acesso == "Gerente")
                 {
                     return RedirectToAction("Index", "Dashboard");
                 }
@@ -64,9 +64,6 @@ namespace myte.Controllers
                 return View();
 
             }
-
-
-
         }
 
 
@@ -86,7 +83,6 @@ namespace myte.Controllers
                 ModelState.AddModelError(string.Empty, "Erro ao realizar logout.");
                 return View();
             }
-
 
         }
 

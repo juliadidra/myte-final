@@ -58,9 +58,10 @@ namespace myte.Controllers
                 try
                 {
                     await _wbsService.AddWbsAsync(wbs);
+                    TempData["SuccessMessage"] = "Wbs cadastrada com sucesso!";
                     return RedirectToAction("Index");
 
-                    TempData["SuccessMessage"] = "Wbs cadastrada com sucesso!";
+
                 }
                 catch (Exception ex)
                 {
@@ -68,9 +69,9 @@ namespace myte.Controllers
                 }
 
             }
-
-            return View(wbs);
             TempData["ErrorMessage"] = "Não é possivel prosseguir com a ação";
+            return View(wbs);
+
 
         }
 
@@ -136,7 +137,7 @@ namespace myte.Controllers
                 }
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 TempData["ErrorMessage"] = "Não é possivel excluir, existem registro de horas com essa WBS.";
             }
