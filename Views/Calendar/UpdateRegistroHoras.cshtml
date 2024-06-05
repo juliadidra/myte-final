@@ -1,0 +1,35 @@
+﻿ @model myte.Models.RegistroHoras
+
+@{
+    ViewData["Title"] = "Atualizar registro de Horas";
+}
+
+<h1>Update Registro de Horas</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Horas" class="control-label"></label>
+        <input asp-for="Horas" class="form-control" />
+        <span asp-validation-for="Horas" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Dia" class="control-label"></label>
+        <input asp-for="Dia" class="form-control" type="date" />
+        <span asp-validation-for="Dia" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="WBS_Codigo" class="control-label"></label>
+        <select asp-for="WBS_Codigo" class="form-control" asp-items="@(new SelectList(ViewBag.WbsList, "Codigo", "Nome"))"></select>
+        <span asp-validation-for="WBS_Codigo" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="Funcionario_Email" value="julia@email.com" />
+    <div class="form-group">
+        <input type="submit" value="Update" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Registro Horas</a>
+</div>
+
+

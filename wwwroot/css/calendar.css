@@ -25,31 +25,31 @@
         background-color: #B3AF52;
     }
 
-    #prev, #next {
-        background: #E8DEF8;
-        color: #414141;
-        border: none;
-        transition: 0.2s;
-        border-radius: 10px;
-        height: 2.5em;
-    }
+#prev, #next {
+    background: #E8DEF8;
+    color: #414141;
+    border: none;
+    transition: 0.2s;
+    border-radius: 10px;
+    height: 2.5em;
+}
 
     #prev:hover, #next:hover {
         background: #A155B9;
-        color:white;
+        color: white;
     }
 
 
 .calendar-header {
     display: flex;
     align-items: center;
-    justify-content:center;
-    gap:5em;
-    padding:1em;
+    justify-content: center;
+    gap: 5em;
+    padding: 1em;
 }
 
 
-    #quinzena-label {
+#quinzena-label {
     color: #A155B9;
     font-weight: bold;
     font-size: 18px;
@@ -66,10 +66,11 @@
 }
 
 
-.calendar-table thead {
-    background-color: #A155B9;
-    color: white;    
-}
+    .calendar-table thead {
+        background-color: #A155B9;
+        color: white;
+    }
+
     .calendar-table th, .calendar-table td {
         border: 1px solid #ffff;
         padding: 10px;
@@ -91,18 +92,35 @@
     background: #E8DEF8;
 }
 
-.hours-input:disabled {
+    .hours-input:disabled {
+        background-color: #A155B9;
+        cursor: not-allowed;
+    }
+
+.day-cell input {
     background-color: #A155B9;
-    cursor: not-allowed;
 }
 
-.day-cell input{
-    background-color: #A155B9;
-}
 .weekend {
     background-color: #A155B9; /* Substitua por sua cor desejada */
 }
+
 .day .weekend {
     border: 2px solid #ffff;
 }
 
+.div_horas_edit {
+    display: flex;
+    gap: 0.2em;
+}
+
+.input_horas {
+    text-align: center;
+    width: fit-content;
+    background: #F7F2F9;
+    border: none;
+}
+
+.img_edit_horas {
+    width: 1em;
+}

@@ -1,72 +1,161 @@
 ﻿@model myte.Models.CalendarPageViewModel
 
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        @* <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button> *@
+    </div>
+}
 
-<partial name="_Header" model="Model"></partial>
+<h2>Registro de Horas</h2>
 
-@* Calendar MyTE *@
 
-    <div class="calendar-container">
-    <section class="container-buttonSalva-calendar  d-flex justify-content-end ">
-        
-            @* Calendário Quinzena *@
-            <div class="calendar-header">
-                <button id="prev">Anterior</button>
-                <span id="quinzena-label"></span>
-                <button id="next">Próximo</button>
-            </div>
 
-            @* Botão Salvar *@
-            <div class="div_botao_salvar">
-                <button class="botao_salvar"> Salvar</button>
-            </div>
+<a asp-action="Create" asp-controller="Calendar" class="btn btn-primary botao_create_horas"> Registrar horas</a>
 
-     </section>
-       
-
-        @* Tabela Calendário *@
-        <table class="calendar-table">
-            <thead>
-                <tr id="header-row">
-                    <th class="vw-100">WBS</th>                    
-                    @foreach (var day in Model.CalendarDays)
-                    {
-                    <th class="w-25">
-                            <div>@day.DayOfWeek</div>
-                            <div>@day.Day</div>
-                        </th>
-                    }
-                    
-                </tr>
-            </thead>
-            <tbody id="calendar-body">
-                @for (int i = 0; i < 7; i++)
-                {
-                    <tr>                        
-                    <td>
-                        <select class="wbs-select">
-                            @foreach (var wbsOption in Model.WbsList)
-                            {
-                                <option value="@wbsOption.Codigo">@wbsOption.Nome</option>
-                            }
-                        </select> 
-                    </td>
-
-                    @foreach (var day in Model.CalendarDays)
-                        {
-                            <td class="day-cell">
-                                <input type="number"
-                                   class="hours-input"
-                                   data-day="@day.Day" 
-                                   data-dayofweek="@day.DayOfWeek"
-                                 />
-                            </td>                        
-                        }
-                        
-                    </tr>
-                }
-                </tbody>
-        </table>
+<div class="calendar-container">
+    <div class="calendar-header">
+        <button id="prev" type="button">Anterior</button>
+        <span id="quinzena-label"></span>
+        <button id="next" type="button">Próximo</button>
     </div>
 
-    <script src="~/js/calendar.js"></script>
+    <table class="calendar-table">
+        <thead>
+            <tr id="header-row">
+                <th class="vw-100">WBS</th>
+                @for (int i = 1; i <= 15; i++)
+                {
+                    <th class="w-25">Dia @i da quinzena</th>
+                }
+            </tr>
+        </thead>
+        <tbody id="calendar-body">
+        </tbody>
+    </table>
+</div>
 
+
+
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const quinzenaLabel = document.getElementById('quinzena-label');
+            const prevButton = document.getElementById('prev');
+            const nextButton = document.getElementById('next');
+            const calendarBody = document.getElementById('calendar-body');
+            let currentDate = new Date();
+            let currentQuinzena = 1;
+
+            // Obter dados do modelo
+            const wbsList = @Html.Raw(Json.Serialize(Model.WbsList));
+            const registroHorasList = @Html.Raw(Json.Serialize(Model.RegistroHorasList));
+
+            console.log('WBS List:', wbsList);
+            console.log('Registro Horas List:', registroHorasList);
+
+            function getQuinzena(date) {
+                const day = date.getDate();
+                return day <= 15 ? 1 : 2;
+            }
+
+            function parseDate(dateString) {
+                if (!dateString) {
+                    console.error('Invalid date string:', dateString);
+                    return null;
+                }
+                const [year, month, day] = dateString.split('-');
+                return new Date(year, month - 1, day);
+            }
+
+            function renderCalendar() {
+                const year = currentDate.getFullYear();
+                const month = currentDate.getMonth();
+                const startDay = currentQuinzena === 1 ? 1 : 16;
+                const endDay = currentQuinzena === 1 ? 15 : new Date(year, month + 1, 0).getDate();
+
+                if (quinzenaLabel) {
+                    quinzenaLabel.textContent = `Quinzena ${currentQuinzena} de ${month + 1}/${year}`;
+                }
+
+                calendarBody.innerHTML = '';
+
+                wbsList.forEach(wbs => {
+                    if (!wbs || !wbs.nome) {
+                        console.error('WBS data is missing:', wbs);
+                        return;
+                    }
+
+                    console.log('Processing WBS:', wbs.nome);
+
+                    const row = document.createElement('tr');
+                    const wbsNameCell = document.createElement('td');
+                    wbsNameCell.textContent = wbs.nome;
+                    row.appendChild(wbsNameCell);
+
+                    for (let day = startDay; day <= endDay; day++) {
+                        console.log('Processing Day:', day);
+
+                        const cell = document.createElement('td');
+                        const date = new Date(year, month, day);
+                        if (isNaN(date)) {
+                            console.error('Invalid date:', date);
+                            continue;
+                        }
+                        const dateString = date.toISOString().split('T')[0];
+
+                        const registro = registroHorasList.find(r => {
+                            const registroDate = parseDate(r.dia); // Verifique se r.dia é o nome correto
+
+                            console.log('Comparing dates:', registroDate, dateString, r.wbS_Codigo, wbs.codigo, r.id,);
+                            return registroDate && registroDate.toISOString().split('T')[0] === dateString && r.wbS_Codigo === wbs.codigo;
+                            console.log(registro)
+                        });
+                        const registroId = registro ? registro.id : '';
+                        console.log(registroId)
+                        const horas = registro ? registro.horas : '';
+                        console.log('Horas:', horas);
+
+                        cell.innerHTML = `
+                                            <div>Dia ${day}</div>
+                                            <div class="d-flex div_horas_edit">
+                                            <input type="number" value="${horas}" disabled class="input_horas" data-dia="${dateString}" data-wbs="${wbs.codigo}" />
+                                            <a href="/Calendar/UpdateRegistroHoras/${registroId}" class="botao_editar_horas" > <img src=\"/assets/icon_edit.svg\" class="img_edit_horas" > </a>
+
+                                            </div>`;
+                        row.appendChild(cell);
+                    }
+                    calendarBody.appendChild(row);
+                });
+            }
+
+            prevButton.addEventListener('click', () => {
+                if (currentQuinzena === 1) {
+                    currentDate.setMonth(currentDate.getMonth() - 1);
+                    currentQuinzena = 2;
+                } else {
+                    currentQuinzena = 1;
+                }
+                renderCalendar();
+            });
+
+            nextButton.addEventListener('click', () => {
+                if (currentQuinzena === 2) {
+                    currentDate.setMonth(currentDate.getMonth() + 1);
+                    currentQuinzena = 1;
+                } else {
+                    currentQuinzena = 2;
+                }
+                renderCalendar();
+            });
+
+            renderCalendar();
+
+
+        });
+    </script>
+}

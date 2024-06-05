@@ -1,15 +1,16 @@
 ﻿using myte.Models;
+using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace myte.Services
 {
     public class RegistroHorasService
     {
-        HttpClient _httpClient;
+        private HttpClient _httpClient;
 
         public RegistroHorasService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-
             _httpClient.BaseAddress = new Uri("http://localhost:5273");
         }
 
@@ -27,6 +28,8 @@ namespace myte.Services
 
         public async Task<RegistroHoras> AddRegistroHorasAsync(RegistroHoras registroHoras)
         {
+
+
             var apiResposta = await _httpClient.PostAsJsonAsync($"/api/RegistroHoras/PostHoras", registroHoras);
             apiResposta.EnsureSuccessStatusCode();
 
@@ -40,6 +43,7 @@ namespace myte.Services
 
             return await apiResposta.Content.ReadFromJsonAsync<RegistroHoras>();
         }
+
 
         public async Task<List<Wbs>> GetAllWbsAsync()
         {
