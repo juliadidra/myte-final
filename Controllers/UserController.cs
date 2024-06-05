@@ -99,7 +99,7 @@ namespace myte.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, "Erro ao tentar se logar");
+                ModelState.AddModelError(string.Empty, "Erro ao criar acesso");
             }
 
             return View(user);
