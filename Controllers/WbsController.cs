@@ -125,14 +125,22 @@ namespace myte.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteWbs(string codigo)
         {
-            var wbs = await _wbsService.GetWbsByIdAsync(codigo);
-
-            if (wbs == null)
+            try
             {
-                return NotFound();
+                var wbs = await _wbsService.GetWbsByIdAsync(codigo);
+
+                if (wbs != null)
+                {
+                    await _wbsService.DeleteWbsAsync(codigo);
+                    return RedirectToAction(nameof(Index));
+                }
+
+            }
+            catch (Exception ex) 
+            {
+                TempData["ErrorMessage"] = "Não é possivel excluir, existem registro de horas com essa WBS.";
             }
 
-            await _wbsService.DeleteWbsAsync(codigo);
             return RedirectToAction(nameof(Index));
 
         }

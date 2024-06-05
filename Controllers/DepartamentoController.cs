@@ -118,7 +118,7 @@ namespace myte.Controllers
             } 
             catch (Exception ex) 
             {
-                TempData["ErrorMessage"] = "Não é possivel excluir o registro";
+                TempData["ErrorMessage"] = "Não é possivel excluir, existem funcionarios nesse departamento.";
               
                 //TempData["ErrorMessage"] = "Não é possivel prosseguir com a ação";
             }

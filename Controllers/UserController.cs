@@ -48,10 +48,15 @@ namespace myte.Controllers
                     return RedirectToAction("Home", "Home");
 
                 }
+                else if(funcionario.Acesso == "Gerente")
+                {
+                    return RedirectToAction("Index", "Dashboard");
+                }
                 else
                 {
                     return RedirectToAction("Index", "Calendar");
                 }
+
             }
             catch (Exception ex)
             {
