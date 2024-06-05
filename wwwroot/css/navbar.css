@@ -1,4 +1,5 @@
-﻿.navbar{
+﻿.navbar {
+   
     list-style: none;
 }
 
@@ -19,6 +20,8 @@
 }
 
 .navegacao {
+   
+    margin-top: 5.05rem;
     display: grid;
     grid-template-columns: 1fr 3fr 500px;
     justify-content: center;

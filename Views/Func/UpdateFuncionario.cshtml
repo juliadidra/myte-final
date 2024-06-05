@@ -6,9 +6,10 @@
 
 
 @* Titulo  *@
+<partial name="_Header" model="Model"></partial>
 
 
-<main class="containerMain">
+<section class="containerMain">
     <div>
         <h2 class="title">
            Atualizar Registro
@@ -18,17 +19,7 @@
             <div class="row container_foto-data">
                 @* Imagem
                 Tenho que adicionar uma funçao upload da imagem
-                *@
-                <div class="col">
-                    @* <label asp-for="Foto">
-                        <img id="preview" src="/css/Assets/funcImagem.jpeg" class="img-thumbnail" alt="...">
-                    </label> *@
-                    @*  <input type="file" id="imageUpload" asp-for="Foto" onchange="loadFile(event)" /> *@
-                </div>
-                @* Data de Contratação
-                **** Com o Atributo <<< asp-for >>> estamos RELACIONANDO os dois pedaços label e input
-                com a propriedade estipulada em Model Funcionário ***
-                *@
+                *@                
                 <div class="form-group col">
                     <label asp-for="funcionario.DataDeContratacao">Data de Contratação:</label>
                     <input asp-for="funcionario.DataDeContratacao" type="date" class="form-control" id="contratacao">
@@ -149,13 +140,21 @@
 
             @*  Botões  *@
             <div class="mb-3 botoesForm">
-                <a asp-action="ListaFuncionarios" class="btn btn-outline-secondary form-button_cancelar" role="button">Cancelar</a>
-                <button  type="submit" class="btn btn-primary ">Salvar </button>
+                <a asp-action="ListaFuncionarios"
+                   class="btn btn-outline-secondary botao-atualizar"
+                   role="button">
+                        Cancelar
+                </a>
+
+                <button  type="submit"
+                        class="btn btn-primary botao-atualizar ">
+                    Salvar 
+                </button>
                 
             </div>
 
         </form>
 
     </div>
-</main>
+</section>
 

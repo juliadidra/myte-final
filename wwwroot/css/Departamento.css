@@ -55,6 +55,7 @@
 }
 
 .container-pesquisarEhNewbedepart {
+    margin-top: 1rem;
 }
 .container-search{
     background: #fff;
@@ -263,7 +264,7 @@ a {
 /*Página Update do Departamento*/
 
 .container-Update {
-    margin-top: 2rem;
+    margin-top: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -281,10 +282,30 @@ a {
     padding: 1rem 1rem 2rem 1rem;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
     border-radius: 20px;
+    nome-departamento
 }
 
 .label-update-nome-departamento {
     display: flex;
     flex-direction: column;
-    gap:.5rem;
+    gap:.25rem;
+}
+.card-body{
+    display: flex;
+    justify-content:space-evenly;
+    flex-direction:column;
+    align-items: center;
+    text-align: center;
+    padding:1rem;
+}
+
+.nome-departamento{
+    padding: 2rem 0 0 0 ;
+}
+
+.container-botoes-card {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
