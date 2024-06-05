@@ -39,7 +39,7 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, "Não foi possivel listar os registro de funcionario");
+                TempData["ErrorMessage"] = "Não é possivel excluir, existem registros de horas cadastrados para esse funcionario.";
                 return View(new List<Funcionario>());
             }
         }
@@ -49,16 +49,23 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
         [HttpPost]
         public async Task<IActionResult> GetFuncionarioUnico(string email)
         {
-            //requisição com uso do serivce
-            var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(email);
-
-            if (funcionario == null)
+            try
             {
-                return NotFound();
-            }
+                var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(email);
 
-            return RedirectToAction("ListaFuncionarios", new { email = funcionario.Email });
+                if (funcionario != null)
+                {
+                    return RedirectToAction("ListaFuncionarios", new { email = funcionario.Email });
+                }
+            }
+            catch 
+            {
+
+                TempData["ErrorMessage"] = "Não existem funcionarios com esse email para filtrar";
+            }
+            return RedirectToAction("ListaFuncionarios");
         }
+
 
         public async Task<IActionResult> AdicionarFuncionario()
         {
@@ -115,7 +122,6 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
         {
             try
             {
-
                 if (email != funcionario.Email)
                 {
                     return BadRequest();
@@ -127,6 +133,7 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
                         funcionario.Departamento_Id = null;
                     }
                     await _funcionarioService.UpdateFuncionarioAsync(email, funcionario);
+                    TempData["SuccessMessage"] = "Funcionario atualizado com sucesso!";
                     return RedirectToAction(nameof(ListaFuncionarios));
                 }
             }
@@ -137,22 +144,27 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
             return View(funcionario);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> DeleteFuncionario(string email)
         {
-            //criar a requisição de selção do registro para ser excluido
-            var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(email);
-            if (funcionario == null)
+            try
             {
-                return NotFound();
+          var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(email);
+               if (funcionario != null)
+                {
+                    await _funcionarioService.DeleteFuncionarioAsync(email);
+                    TempData["SuccessMessage"] = "Exclusão realizada com sucesso!";
+                    return RedirectToAction(nameof(ListaFuncionarios));
+                }
             }
-            await _funcionarioService.DeleteFuncionarioAsync(email);
-            TempData["SuccessMessage"] = "exclusao realizada com sucesso!";
+            catch (Exception e) 
+            {
+                TempData["ErrorMessage"] = "Não é possivel excluir, existem registros de horas cadastrados para esse funcionario.";
+               
+            }
             return RedirectToAction(nameof(ListaFuncionarios));
         }
-
-
-
 
 
 

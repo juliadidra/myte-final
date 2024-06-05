@@ -23,22 +23,11 @@
 @if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["SuccessMessage"]
-        @* <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-    </button> *@
+        @TempData["SuccessMessage"]    
     </div>
 }
 
-@if (TempData["SuccessMessageDelete"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["SuccessMessageDelete"]
-        @* <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-    </button> *@
-    </div>
-}
+
 
 @* Botão criar WBS e pesquisar - O CSS está no departamente  *@
 <div class="d-flex justify-content-end  mb-3 container-pesquisarEhNewbedepart">

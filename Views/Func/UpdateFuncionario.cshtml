@@ -1,7 +1,7 @@
 ﻿@model myte.Models.DepartamentoFuncionarioViewModel
 
 @{
-    ViewData["Title"] = "Atualizar registro";
+    ViewData["Title"] = "Atualizar Registro";
 }
 
 
@@ -11,7 +11,7 @@
 <main class="containerMain">
     <div>
         <h2 class="title">
-            Criar Registro
+           Atualizar Registro
         </h2>
         <form method="post">
 
@@ -55,7 +55,7 @@
                 @* email  *@
                 <div class="mb-3">
                     <label asp-for="funcionario.Email" class="form-label">E-mail</label>
-                    <input asp-for="funcionario.Email" type="text"
+                    <input readonly asp-for="funcionario.Email" type="text"
                            class="form-control"
                            id="formGroupExampleInput"
                            placeholder="Digite o e-mail">

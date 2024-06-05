@@ -103,6 +103,7 @@ namespace myte.Controllers
             if (ModelState.IsValid)
             {
                 await _wbsService.UpdateWbsAsync(codigo, wbs);
+                TempData["SuccessMessage"] = "WBS atualizada com sucesso!";
                 return Redirect("Index");
             }
 
@@ -133,6 +134,7 @@ namespace myte.Controllers
                 if (wbs != null)
                 {
                     await _wbsService.DeleteWbsAsync(codigo);
+                    TempData["SuccessMessage"] = "Exclusão realizada com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
 
