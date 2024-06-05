@@ -72,10 +72,16 @@
     }
 
     .calendar-table th, .calendar-table td {
+        height: 3rem;
         border: 1px solid #ffff;
-        padding: 10px;
+        padding: 10px 1px;
         text-align: center;
     }
+
+.calendar-table th{
+  
+    align-items:center;
+}
 
 
 .wbs-select {
@@ -110,17 +116,70 @@
 }
 
 .div_horas_edit {
-    display: flex;
-    gap: 0.2em;
+    align-items:center;
+    width:20px;
+    margin: .5rem .25rem;
+    gap:.5rem;
+    
 }
 
 .input_horas {
     text-align: center;
-    width: fit-content;
-    background: #F7F2F9;
-    border: none;
+    width: 45px;
+    background: #E8DEF8;
 }
 
 .img_edit_horas {
     width: 1em;
+}
+
+/* Ajuste do Novo Calendar*/
+.container-regHoras{
+    display: flex;
+    justify-content: end;
+    align-items:center;
+    gap: 25%;
+    margin: 1rem
+}
+
+
+
+.botao_create_horas {
+    background-color: #E8DEF8;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-weight: 500;
+}
+ 
+
+
+    .botao_create_horas:hover {
+        background-color: #632377;
+    }
+
+.calendar-table table {
+    width: 100%; /* Ajuste conforme necessário */
+    table-layout: fixed;
+}
+
+.container-thHeader {
+    padding: 1rem 0;
+}
+.tr-header {
+}
+.th-wbs {
+    width: 100px;
+}
+
+.th-dias {
+    width: 50px;
+}
+
+.tbody-container-calendar {
+    width: 50vw;
+}
+
+.tfoot-container-calendar {
+    width: 50vw;
 }
