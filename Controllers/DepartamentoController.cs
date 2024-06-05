@@ -18,11 +18,20 @@ namespace myte.Controllers
         }
 
         //1 tarefa crud: Read - Leitura e recuperação de dados
-        public async Task<IActionResult> Index()
+        //Modificar o método Index para aceitar um parâmetro string searchString.
+        //Esse parâmetro será usado para filtrar os departamentos. 
+        public async Task<IActionResult> Index(string searchString)
         {
             try
             {
                 var departamento = await _departamentoService.GetAllDepartamentosAsync();
+
+                //trecho adicionado para implementar uma condição 
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    departamento = departamento.Where(s => s.Nome.Contains(searchString)).ToList();
+                }
+
                 return View(departamento);
             }
             catch (Exception ex)
