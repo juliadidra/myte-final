@@ -33,6 +33,7 @@ namespace myte.Controllers
             {
                 var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(login.Email);
                 HttpContext.Session.SetString("UserEmail", funcionario.Email); // Armazenando o email na sessão
+
                 TempData["EmailUsuario"] = login.Email;
 
                 if (funcionario == null)
@@ -96,6 +97,7 @@ namespace myte.Controllers
             try
             {
                 await _criarAcessoService.AddAcessoAsync(user);
+                TempData["SuccessMessage"] = "Funcionario cadastrado com sucesso!";
                 return RedirectToAction("ListaFuncionarios", "Func");
             }
             catch (Exception ex)

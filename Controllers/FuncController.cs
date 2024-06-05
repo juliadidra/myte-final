@@ -89,6 +89,7 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
             {
                 try
                 {
+                    TempData["EmailFuncionario"] = funcionario.Email;
                     await _funcionarioService.AddFuncionarioAsync(funcionario);
                     return RedirectToAction("Create", "User");
                 }
