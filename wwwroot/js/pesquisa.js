@@ -21,17 +21,18 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    $(".input_search-depart").on("input", function () {
+    $(".input_search-wbs").on("input", function () {
         var searchValue = $(this).val();
         $.ajax({
-            url: '@Url.Action("Index", "Wbs")',
+            url: '@Url.Action("Index", "Wbs")', // Alterado de "Wbs" para "Departamento"
             data: { searchString: searchValue },
             success: function (data) {
-                $("#wbsList").html(data);
+                $("#WbsList").html(data);
             }
         });
     });
 });
+
 
 /*
 $(document).ready(function () {

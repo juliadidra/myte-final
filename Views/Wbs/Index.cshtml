@@ -34,7 +34,7 @@
 {
     <div class="d-flex justify-content-end  mb-3 container-pesquisarEhNewbedepart">
         <div class="div d-flex d-flex my-auto h-25   container-search">
-            <input type="search" placeholder="WBS" class=" input_search-depart" />
+            <input type="search" placeholder="WBS" class=" input_search-depart input_search-wbs" />
             <button class="botao_search-depart"><img src="~/assets/icon_lupa.svg" /></button>
         </div>
 
@@ -50,7 +50,7 @@
 
 <div asp-validation-summary="All" class="text-danger"></div>
 
-<table class="table tabela_wbs">
+<table class="table tabela_wbs" id="WbsList">
     <thead class="thead_wbs">
         <tr class="tr_wbs">
             <th>Nome</th>

@@ -10,7 +10,7 @@
     <h2>Criar Registro de Horas</h2>
 
 
-    <form asp-action="Create" >
+    <form asp-action="Create" method="post" >
         <div class="form-CriarRegistro">
             <div class="form-group m-3">
                 <label asp-for="Horas" class="control-label p-2"></label>
@@ -28,17 +28,15 @@
                 <span asp-validation-for="WBS_Codigo" class="text-danger"></span>
             </div>
 
-            <input type="hidden" asp-for="Funcionario_Email" value="@TempData.Peek("EmailUsuario")" />            
-        </div>
-        
+            <input type="hidden" asp-for="Funcionario_Email" value="@TempData.Peek("EmailUsuario")" />
+            <div class="botoes-criar_registro d-flex justify-content-end gap-3">
+                <a asp-action="Index" asp-route-email="@ViewBag.Email" class="btn btn-secondary botao-cancelarExcluir">
+                    Cancelar
+                </a>
+                <input type="submit" value="Criar Registro de Horas" class="btn btn-primary   botao-atualizar " />
+            </div>            
+        </div> 
     </form>
-    <div class="botoes-criar_registro d-flex justify-content-end gap-3" ">
-        <a asp-action="Index" asp-route-email="@ViewBag.Email" class="btn btn-secondary botao-cancelarExcluir">Cancelar</a>
-        <input type="submit" value="Criar Registro de Horas" class="btn btn-primary   botao-atualizar " />
-    </div>
-        
-    
-
 </div>
 
 

@@ -62,56 +62,42 @@
 
 
 
-@* Botão criar departamento e pesquisar 
-<div class="d-flex justify-content-end  mb-3 container-pesquisarEhNewbedepart">
-    <div class="div d-flex d-flex my-auto h-25   container-search">
-        <input type="search" placeholder="Departamento" class=" input_search-depart" />
-        <button class="botao_search-depart"><img src="~/assets/icon_lupa.svg" /></button>
-    </div>
-
-    <a class="btn btn-primary botao_criar_departamento"
-       asp-controller="Departamento" asp-action="Create">
-        <img src="~/assets/icon_add.svg" class="icone_plus" />
-        Criar Departamento
-    </a>
-</div>*@
-
-<form id="myTable">
 @* listagem dos departamentos*@
-<div class="container mt-3 custom-container">
-    <div class="row row-cols-md-4">
-        @foreach (Departamento registro in Model)
-        {
-            <div class="col-md-3 mb-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="position-relative img-card mb-3">
-                            <img src="/assets/Group.svg" class="card-img-top img-fluid imagem-card" alt="...">
-                        </div>
-                        <div class="nome-departamento text-center mb-3">
-                            <p class="text-dark fs-5 fw-semibold font-family-Roboto m-0 input-card">@registro.Nome</p>
-                        </div>
-                        <div class="container-botoes-card">
-                            <div class="mb-2 mr-2">
+<div class="container mt-3 custom-container" >
+    <form id="myTable">
+        <div class="row row-cols-md-4">
+            @foreach (Departamento registro in Model)
+            {
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="position-relative img-card mb-3">
+                                <img src="/assets/Group.svg" class="card-img-top img-fluid imagem-card" alt="...">
+                            </div>
+                            <div class="nome-departamento text-center mb-3">
+                                <p class="text-dark fs-5 fw-semibold font-family-Roboto m-0 input-card">@registro.Nome</p>
+                            </div>
+                            <div class="container-botoes-card">
+                                <div class="mb-2 mr-2">
 
                                     <a class="btn btn-outline-light botao-atualizar botao-atualizar"
                                        asp-action="Update" asp-route-id="@registro.Id">
-                                    Atualizar
-                                </a>
-                                
-                            </div>
-                            <div class="mb-2">
-                                <form asp-action="Delete" asp-route-id="@registro.Id" method="post">
+                                        Atualizar
+                                    </a>
+
+                                </div>
+                                <div class="mb-2">
+                                    <form asp-action="Delete" asp-route-id="@registro.Id" method="post">
                                         <button class="btn btn-secondary botao-cancelarExcluir" data-id="@registro.Id">Excluir</button>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
-</form>
+            }
+        </div>
+    </form>
 </div>
 
 
