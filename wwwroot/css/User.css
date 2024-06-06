@@ -8,8 +8,7 @@
 }
 
 .container-user {
-    width: 600px;
-    height: 500px;
+    
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -18,7 +17,7 @@
     background: #ffff;
     border-radius: 2px;
     box-shadow: 2px 0px 60px 2px rgb(53, 43, 81, 0.10);
-    padding: 2rem;
+    padding: 3rem;
     gap: 1rem;
 }
 
