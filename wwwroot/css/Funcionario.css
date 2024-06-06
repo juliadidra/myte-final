@@ -75,6 +75,17 @@
     padding: .25rem 1rem;
 }
 
+.botao-cancelarExcluir {
+    background-color: #fff;
+    color: #979797;
+    font-weight: 500;
+    padding: 4px 1rem;
+}
+.botao-cancelarExcluir:hover {
+    font-weight: 500;
+    padding: 4px 1rem;
+}
+
 
 
 .input_search-func {

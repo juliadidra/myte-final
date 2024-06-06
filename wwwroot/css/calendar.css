@@ -1,4 +1,12 @@
-﻿.calendar-container {
+﻿
+.títuloMyte {
+    display:flex;
+    justify-content:center;
+    padding: 2rem 0 2rem 0;
+}
+
+
+.calendar-container {
     margin: 20px;
     padding-bottom: 1em;
 }
@@ -32,11 +40,13 @@
     transition: 0.2s;
     border-radius: 10px;
     height: 2.5em;
+    padding: 0 2rem;
 }
 
     #prev:hover, #next:hover {
         background: #A155B9;
         color: white;
+        
     }
 
 
@@ -44,7 +54,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5em;
+    gap: 2em;
     padding: 1em;
 }
 
@@ -100,7 +110,8 @@
 
     .hours-input:disabled {
         background-color: #A155B9;
-        cursor: not-allowed;
+        /*
+        cursor: not-allowed;*/
     }
 
 .day-cell input {
@@ -138,7 +149,7 @@
     display: flex;
     justify-content: end;
     align-items:center;
-    gap: 25%;
+    gap: 14%;
     margin: 1rem
 }
 
@@ -156,6 +167,9 @@
 
     .botao_create_horas:hover {
         background-color: #632377;
+    }
+    .botao_create_horas a:hover {
+        color: #fff;
     }
 
 .calendar-table table {
@@ -182,4 +196,32 @@
 
 .tfoot-container-calendar {
     width: 50vw;
+}
+
+
+/*  Forulário Uppdate */
+.container-CriarRegistro {
+    margin-top: 8rem;
+    padding: 4rem 2.5rem;
+    width: 60vw;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 2px 0px 60px 2px rgb(53, 43, 81, 0.10);
+    border-radius: 10px;
+}
+
+.form-CriarRegistro{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+}
+
+/* Criar Registro*/
+botoes-criar_registro{
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    width: contain;
+    
+
 }

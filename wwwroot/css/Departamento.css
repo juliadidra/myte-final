@@ -44,19 +44,27 @@
     display: flex;
     float: right;
     background: #A155B9;
-    color: white;
+    color: #fff;
     border: none;
     width: fit-content;
     transition: 0.2s;
-    border-radius: 10px;
+    border-radius: 5px;
     height: 2.5em;
     margin: 1em 3rem;
     font-weight: 600;
+    padding: 0 2rem
+}
+..botao_criar_departamento a {
+    color: #ffff;
 }
 
-.container-pesquisarEhNewbedepart {
-    margin-top: 1rem;
+.botao_criar_departamento a:hover {
+    color: #fff
 }
+
+    .container-pesquisarEhNewbedepart {
+        margin-top: 1rem;
+    }
 .container-search{
     background: #fff;
     border-radius: 2px;

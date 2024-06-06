@@ -25,7 +25,10 @@
 
 
 <div class="calendar-container">
-    <h2>Registro de Horas</h2>
+    <div class="títuloMyte">
+        <h2>Registro de Horas</h2>
+    </div>
+    
     <div class="container-regHoras">
 
         <div class="calendar-header">
@@ -33,9 +36,9 @@
             <span id="quinzena-label"></span>
             <button id="next" type="button">Próximo</button>
         </div>
-        <div class="botao_create_horas">
+        <div class="btn btn-primary botao_criar_departamento">
             <a asp-action="Create"
-               asp-controller="Calendar">
+               asp-controller="Calendar" style="color: #fff;">
                 Registrar horas
             </a>
 
@@ -46,10 +49,11 @@
     @* Tabela Myte *@
     <div class="calendar-table">
         <table>
+           
             <thead class="container-thHeader">
                 <tr id="header-row" class="tr-header">
                     <th class="th-wbs">WBS</th>
-                    @for (int i = 1; i <= 15; i++)
+                    @for (int i = 1; i <= 16; i++)
                     {
                         <th class="th-dias">@i </th>
                     }
@@ -60,7 +64,7 @@
             <tfoot>
                 <tr id="total-row">
                     <th class="th-dias">Total de Horas</th>
-                        @for (int i = 1; i <= 15; i++)
+                        @for (int i = 1; i <= 16; i++)
                         {
                         <th class="th-dias" id="total-dia-@i">0</th>
                         }
@@ -98,7 +102,7 @@
 
             function getQuinzena(date) {
                 const day = date.getDate();
-                return day <= 15 ? 1 : 2;
+                return day <= 16 ? 1 : 2;
             }
 
             function parseDate(dateString) {
@@ -172,10 +176,15 @@
                         </a>
                         </div>`;
                         row.appendChild(cell);
+
+                        
                     }
                     calendarBody.appendChild(row);
                 });
 
+
+               
+                
                 // Atualizar totais diários no rodapé
                 for (let i = 0; i < dailyTotals.length; i++) {
                     document.getElementById(`total-dia-${i + 1}`).textContent = dailyTotals[i];

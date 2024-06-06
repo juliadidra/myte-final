@@ -5,31 +5,44 @@
 
 <partial name="_Header" model="Model"></partial>
 
-<h2>Criar Registro de Horas</h2>
+
+<div class="container flex-column align-content-center justify-content-around  container-CriarRegistro">
+    <h2>Criar Registro de Horas</h2>
 
 
-<form asp-action="Create">
-    <div class="form-group">
-        <label asp-for="Horas" class="control-label"></label>
-        <input asp-for="Horas" class="form-control" />
-        <span asp-validation-for="Horas" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Dia" class="control-label"></label>
-        <input asp-for="Dia" class="form-control" type="date" />
-        <span asp-validation-for="Dia" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="WBS_Codigo" class="control-label"></label>
-        <select asp-for="WBS_Codigo" class="form-control" asp-items="@(new SelectList(ViewBag.WbsList, "Codigo", "Nome"))"></select>
-        <span asp-validation-for="WBS_Codigo" class="text-danger"></span>
-    </div>
-    <input type="hidden" asp-for="Funcionario_Email" value="@TempData.Peek("EmailUsuario")" />
-    <div class="form-group">
-        <input type="submit" value="Criar" class="btn btn-primary" />
-        <a asp-action="Index" asp-route-email="@ViewBag.Email" class="btn btn-secondary">Cancelar</a>
-    </div>
-</form>
+    <form asp-action="Create" >
+        <div class="form-CriarRegistro">
+            <div class="form-group m-3">
+                <label asp-for="Horas" class="control-label p-2"></label>
+                <input asp-for="Horas" class="form-control" />
+                <span asp-validation-for="Horas" class="text-danger"></span>
+            </div>
+            <div class="form-group m-3">
+                <label asp-for="Dia" class="control-label p-2"></label>
+                <input asp-for="Dia" class="form-control" type="date" />
+                <span asp-validation-for="Dia" class="text-danger"></span>
+            </div>
+            <div class="form-group m-3">
+                <label asp-for="WBS_Codigo" class="control-label p-2"></label>
+                <select asp-for="WBS_Codigo" class="form-control" asp-items="@(new SelectList(ViewBag.WbsList, "Codigo", "Nome"))"></select>
+                <span asp-validation-for="WBS_Codigo" class="text-danger"></span>
+            </div>
+
+            <input type="hidden" asp-for="Funcionario_Email" value="@TempData.Peek("EmailUsuario")" />
+
+            <div class="botoes-criar_registro">
+                <a asp-action="Index" asp-route-email="@ViewBag.Email" class="btn btn-secondary botao-cancelarExcluir">Cancelar</a>
+                <input type="submit" value="Criar Registro de Horas" class="btn btn-primary   botao-atualizar " />
+                
+            </div>
+
+        </div>
+        
+    </form>
+
+</div>
+
+
 
 @section Scripts {
     @{

@@ -8,6 +8,8 @@
     ViewData["Title"] = "Criar WBS";
 }
 
+<partial name="_Header" model="Model"></partial>
+
 
 @*  <nav>
     <a asp-action="Index" class="link_lista_wbs"> <img src="/off.svg" class="icone_home"/>Painel WBS</a>
@@ -72,7 +74,7 @@
                 <span></span>
             </div>
 
-            <div class="d-flex justify-content-around gap-2">
+            <div class="d-flex justify-content-around gap-2 m-5">
                 <a asp-controller="Wbs" asp-action="Index" class="btn btn-secondary button_cancelar">Cancelar</a>
                 <button type="submit" class="button_form">Cadastrar</button>
 
