@@ -3,6 +3,45 @@
 
 
 
-.iframe{
-    width:100%;
+.container-Iframe {
+    height: 100vh;
+    padding: 0 2rem ;
+}
+
+.navegacao_dash {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    padding: 1rem 2.25rem 1.5rem 1rem;
+}
+
+
+.itens-dash {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 20px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    gap: 1rem;
+    /* transition: all 5s cubic-bezier(0.4, 0, 1, 1) 5s; Adiciona transição suave */
+    border: 4px solid #fff;
+    box-shadow: 2px 2px 2px 2px rgb(53, 43, 81, 0.05);
+    background-color: #fff;
+    width: 210px;
+    color: #414141;
+}
+
+    .itens-dash:hover {
+        border: 4px solid var(--bs-tertiary);
+        box-shadow: 2px 2px 2px 2px rgb(53, 43, 81, 0.10);
+        color: var(--bs-tertiary);
+    }
+
+.itens-dash img{
+    width: 30%;
+    padding-right: 1rem;
 }
