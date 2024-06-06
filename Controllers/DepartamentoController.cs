@@ -36,7 +36,7 @@ namespace myte.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, "Não foi possivel listar os registro de departamentos");
+                TempData["ErrorMessage"] = "Não existe departamento com esse nome";
                 return View(new List<Departamento>());
             }
 

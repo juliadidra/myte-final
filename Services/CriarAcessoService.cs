@@ -26,11 +26,20 @@ namespace myte.Services
 
         }
 
+        public async Task<User> GetAcessoAsync(string email)
+        {
+            var apiResposta = await _httpClient.GetFromJsonAsync<User>($"/api/Admin/GetOne/GetOne/{email}");
+
+            return apiResposta;
+        }
 
 
 
+        public async Task DeleteAcessoAsync(string email)
+        {
+            var apiResposta = await _httpClient.DeleteAsync($"/api/Admin/Delete/Delete/{email}");
 
-
-
+            apiResposta.EnsureSuccessStatusCode();
+        }
     }
 }

@@ -30,19 +30,21 @@
 
 
 @* Botão criar WBS e pesquisar - O CSS está no departamente  *@
-<div class="d-flex justify-content-end  mb-3 container-pesquisarEhNewbedepart">
-    <div class="div d-flex d-flex my-auto h-25   container-search">
-        <input type="search" placeholder="WBS" class=" input_search-depart" />
-        <button class="botao_search-depart"><img src="~/assets/icon_lupa.svg" /></button>
+@using (Html.BeginForm("Index", "Wbs", FormMethod.Get))
+{
+    <div class="d-flex justify-content-end  mb-3 container-pesquisarEhNewbedepart">
+        <div class="div d-flex d-flex my-auto h-25   container-search">
+            <input type="search" placeholder="WBS" class=" input_search-depart" />
+            <button class="botao_search-depart"><img src="~/assets/icon_lupa.svg" /></button>
+        </div>
+
+        <a class="btn btn-primary botao_criar_departamento"
+        asp-action="CreateWbs">
+            <img src="~/assets/icon_add.svg" class="icone_plus" />
+            Criar WBS
+        </a>
     </div>
-
-    <a class="btn btn-primary botao_criar_departamento"
-       asp-action="CreateWbs">
-        <img src="~/assets/icon_add.svg" class="icone_plus" />
-        Criar WBS
-    </a>
-</div>
-
+}
 
 
 

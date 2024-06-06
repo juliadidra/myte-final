@@ -12,10 +12,13 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
         private FuncionarioService _funcionarioService;
         private DepartamentoService _departamentoService;
 
-        public FuncController(FuncionarioService funcionarioService, DepartamentoService departamentoService)
+        private CriarAcessoService _criarAcessoService;
+
+        public FuncController(FuncionarioService funcionarioService, DepartamentoService departamentoService, CriarAcessoService criarAcessoService)
         {
             _funcionarioService = funcionarioService;
             _departamentoService = departamentoService;
+            _criarAcessoService = criarAcessoService;
         }
 
         //1 tarefa crud: Read - Leitura e recuperação de dados
@@ -29,6 +32,7 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
                     var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(email);
                     if (funcionario != null)
                     {
+                       
                         return View(new List<Funcionario> { funcionario });
                     }
                 }
@@ -39,7 +43,7 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "Não é possivel excluir, existem registros de horas cadastrados para esse funcionario.";
+                TempData["ErrorMessage"] = "Não existe funcionario com esse email";
                 return View(new List<Funcionario>());
             }
         }
@@ -49,6 +53,7 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
         [HttpPost]
         public async Task<IActionResult> GetFuncionarioUnico(string email)
         {
+
             try
             {
                 var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(email);
@@ -56,16 +61,15 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
                 if (funcionario != null)
                 {
                     return RedirectToAction("ListaFuncionarios", new { email = funcionario.Email });
-                }
+                }        
             }
-            catch 
+            catch
             {
-
-                TempData["ErrorMessage"] = "Não existem funcionarios com esse email para filtrar";
+                TempData["ErrorMessage"] = "Não existe funcionario com esse email";
             }
+
             return RedirectToAction("ListaFuncionarios");
         }
-
 
         public async Task<IActionResult> AdicionarFuncionario()
         {
@@ -82,14 +86,16 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
         {
             var depFunc = new DepartamentoFuncionarioViewModel
             {
-                funcionario = funcionario,
+                
+            funcionario = funcionario,
                 departamento = await _departamentoService.GetAllDepartamentosAsync()
             };
+            TempData["EmailFuncionario"] = funcionario.Email;
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    TempData["EmailFuncionario"] = funcionario.Email;
                     await _funcionarioService.AddFuncionarioAsync(funcionario);
                     return RedirectToAction("Create", "User");
                 }
@@ -123,6 +129,7 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
         {
             try
             {
+
                 if (email != funcionario.Email)
                 {
                     return BadRequest();
@@ -134,7 +141,6 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
                         funcionario.Departamento_Id = null;
                     }
                     await _funcionarioService.UpdateFuncionarioAsync(email, funcionario);
-                    TempData["SuccessMessage"] = "Funcionario atualizado com sucesso!";
                     return RedirectToAction(nameof(ListaFuncionarios));
                 }
             }
@@ -145,131 +151,35 @@ namespace Projeto.ASPNET.MVC.CRUD_MyTE.Controllers
             return View(funcionario);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> DeleteFuncionario(string email)
         {
             try
             {
-          var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(email);
-               if (funcionario != null)
+                var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(email);
+
+                var acesso = await _criarAcessoService.GetAcessoAsync(email);
+
+
+                if (funcionario != null && acesso != null)
                 {
                     await _funcionarioService.DeleteFuncionarioAsync(email);
+
+                    await _criarAcessoService.DeleteAcessoAsync(email);
+
                     TempData["SuccessMessage"] = "Exclusão realizada com sucesso!";
                     return RedirectToAction(nameof(ListaFuncionarios));
                 }
+
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Não é possivel excluir, existem registros de horas cadastrados para esse funcionario.";
-               
+                TempData["ErrorMessage"] = "Não é possivel excluir, existem registro de horas associado a esse funcionario.";
             }
             return RedirectToAction(nameof(ListaFuncionarios));
         }
-
-
-
-        /*
-        public IActionResult ListaFuncionarios()
-        {
-            return View(RepositoryFunc.TodosOsFuncionarios);
-        }
-
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Create(Funcionario registroFunc)
-        {
-
-            if (ModelState.IsValid)
-            {
-                RepositoryFunc.Inserir(registroFunc); //ação de inserção de dados na lista
-
-                TempData["SuccessMessage"] = "Cadastro realizado com sucesso!";
-
-                return Redirect("/User/Create"); // view message
-            }
-            else
-            {
-                TempData["ErrorMessage"] = "Não é possivel prosseguir com a ação";
-                return View();
-            }
-
-
-
-        }
-        //Atualizar (Update)       
-        public IActionResult Update(string Identificador) // Primeiro método
-        {           
-            Funcionario consulta = RepositoryFunc.TodosOsFuncionarios.Where((r) => r.Nome == Identificador ).First();
-            return View(consulta);
-        }
-
-        //Sobrecarga do Update
-        [HttpPost]
-        public IActionResult Update(string Identificador, Funcionario registroAlterado)
-        {
-            /*  if (ModelState.IsValid)
-              {
-                  //Alteração da prop Sobrenome
-                  var consulta = RepositoryFunc.TodosOsFuncionarios.Where((r) => r.Nome ==
-                  Identificador).First();
-
-                  if (foto != null)
-                  {
-                      using (var memoryStream = new MemoryStream())
-                      {
-                          foto.CopyTo(memoryStream);
-                          registroAlterado.Foto = memoryStream.ToArray();
-                      }
-                  }
-
-            if (ModelState.IsValid)
-            {
-                var consulta = RepositoryFunc.TodosOsFuncionarios.Where((r) => r.Nome == Identificador).First();
-                consulta.Nome = registroAlterado.Nome;
-                consulta.Sobrenome = registroAlterado.Sobrenome;
-                consulta.DataDeNascimento = registroAlterado.DataDeNascimento;
-                consulta.Email = registroAlterado.Email;
-                consulta.DataDeContratacao = registroAlterado.DataDeContratacao;
-                consulta.Genero = registroAlterado.Genero;
-                consulta.Senioridade = registroAlterado.Senioridade;
-                consulta.Cargo = registroAlterado.Cargo;
-                consulta.Departamento = registroAlterado.Departamento;
-                consulta.Acesso = registroAlterado.Acesso;
-                //consulta.Foto = registroAlterado.Foto;
-
-                return Redirect("ListaFuncionarios");
-            }
-
-
-             return View(); 
-
-        }
-
-        [HttpPost]
-        public IActionResult Delete(string Identificador)
-        {
-            //Definir a consulta exclusão
-            try
-            {
-                Funcionario consulta = RepositoryFunc.TodosOsFuncionarios.Where((r) => r.Nome ==
-                Identificador).First();
-                // acessar o método Excluir - partir da classe Repository
-                RepositoryFunc.Excluir(consulta);
-                TempData["SuccessMessage"] = "exclusao realizada com sucesso!";
-                return RedirectToAction("ListaFuncionarios");
-            }
-            catch
-            {
-                TempData["ErrorMessage"] = "Não é possivel prosseguir com a ação";
-                return Redirect("Index");
-            }
-
-        }*/
     }
 }
+
+
 

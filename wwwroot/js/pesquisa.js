@@ -18,6 +18,21 @@ $(document).ready(function () {
     });
 });
 
+
+
+$(document).ready(function () {
+    $(".input_search-depart").on("input", function () {
+        var searchValue = $(this).val();
+        $.ajax({
+            url: '@Url.Action("Index", "Wbs")',
+            data: { searchString: searchValue },
+            success: function (data) {
+                $("#wbsList").html(data);
+            }
+        });
+    });
+});
+
 /*
 $(document).ready(function () {
     $(".input_search-func").on("input", function () {

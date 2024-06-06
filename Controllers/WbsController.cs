@@ -12,41 +12,28 @@ namespace myte.Controllers
         {
             _wbsService = wbsService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
             try
             {
                 var wbs = await _wbsService.GetAllWbsAsync();
+
+                // trecho adicionado para implementar uma condição
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    wbs = wbs.Where(s => s.Nome.Contains(searchString)).ToList();
+                }
                 return View(wbs);
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, "Não foi possível listar os registros.");
                 return View(new List<Wbs>());
-            }
-
-            //return View(Repository.TodasAsWbs);
+            }        
 
         }
 
-        //recupera uma unica wbs
-
-        /*public ViewResult GetWbsUnica() => View();
-
-        //sobrecarga
-
-        [HttpPost]
-        public async Task<ActionResult> GetWbsUnica(string codigo) //testar essa action sem o Iactionresult (para nao retornar uma view) na busca de wbs
-        {
-            var wbs = await _wbsService.GetWbsByIdAsync(codigo);
-
-            if(wbs == null)
-            {
-                return NotFound();
-            }
-            return View(wbs);
-        }*/
-
+       
         public ViewResult CreateWbs() => View();
 
 
