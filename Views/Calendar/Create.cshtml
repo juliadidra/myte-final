@@ -28,17 +28,16 @@
                 <span asp-validation-for="WBS_Codigo" class="text-danger"></span>
             </div>
 
-            <input type="hidden" asp-for="Funcionario_Email" value="@TempData.Peek("EmailUsuario")" />
-
-            <div class="botoes-criar_registro">
-                <a asp-action="Index" asp-route-email="@ViewBag.Email" class="btn btn-secondary botao-cancelarExcluir">Cancelar</a>
-                <input type="submit" value="Criar Registro de Horas" class="btn btn-primary   botao-atualizar " />
-                
-            </div>
-
+            <input type="hidden" asp-for="Funcionario_Email" value="@TempData.Peek("EmailUsuario")" />            
         </div>
         
     </form>
+    <div class="botoes-criar_registro d-flex justify-content-end gap-3" ">
+        <a asp-action="Index" asp-route-email="@ViewBag.Email" class="btn btn-secondary botao-cancelarExcluir">Cancelar</a>
+        <input type="submit" value="Criar Registro de Horas" class="btn btn-primary   botao-atualizar " />
+    </div>
+        
+    
 
 </div>
 

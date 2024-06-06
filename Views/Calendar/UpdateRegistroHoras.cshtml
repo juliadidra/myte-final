@@ -6,37 +6,45 @@
 
 <partial name="_Header" model="Model"></partial>
 
-<div>
+<div class="container flex-column align-content-center justify-content-around  container-CriarRegistro">
+    <h2>Alterar Registro</h2>
+    <div class="form-CriarRegistro">
+        <form method="post">
+
+            <div class="form-group m-3">
+                <label asp-for="Horas" class="control-label"></label>
+                <input asp-for="Horas" class="form-control" />
+                <span asp-validation-for="Horas" class="text-danger"></span>
+            </div>
+            <div class="form-group m-3">
+                <label asp-for="Dia" class="control-label"></label>
+                <input asp-for="Dia" class="form-control" type="date" />
+                <span asp-validation-for="Dia" class="text-danger"></span>
+            </div>
+            <div class="form-group m-3">
+                <label asp-for="WBS_Codigo" class="control-label"></label>
+                <select asp-for="WBS_Codigo" class="form-control" asp-items="@(new SelectList(ViewBag.WbsList, "Codigo", "Nome"))"></select>
+                <span asp-validation-for="WBS_Codigo" class="text-danger"></span>
+            </div>
+
+            <input type="hidden" asp-for="Funcionario_Email" value="@TempData.Peek("EmailUsuario")" />
+
+            <div class="botoes-criar_registro d-flex justify-content-end gap-3">
+                
+                <a asp-action="Index" asp-route-email="@ViewBag.Email" class="btn btn-secondary botao-cancelarExcluir ">Cancelar</a>
+                <input type="submit" value="Salvar Registro" class="btn btn-primary   botao-atualizar " />               
+
+            </div>
+        </form>       
+    </div>  
+    
+
+    
 
 
 </div>
 
-<h1>Update Registro de Horas</h1>
 
-<form method="post">
-    <div class="form-group">
-        <label asp-for="Horas" class="control-label"></label>
-        <input asp-for="Horas" class="form-control" />
-        <span asp-validation-for="Horas" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Dia" class="control-label"></label>
-        <input asp-for="Dia" class="form-control" type="date" />
-        <span asp-validation-for="Dia" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="WBS_Codigo" class="control-label"></label>
-        <select asp-for="WBS_Codigo" class="form-control" asp-items="@(new SelectList(ViewBag.WbsList, "Codigo", "Nome"))"></select>
-        <span asp-validation-for="WBS_Codigo" class="text-danger"></span>
-    </div>
-    <input type="hidden" asp-for="Funcionario_Email" value="@TempData.Peek("EmailUsuario")" />
-    <div class="form-group">
-        <input type="submit" value="Update" class="btn btn-primary" />
-        <a asp-action="Index" asp-route-email="@ViewBag.Email" class="btn btn-secondary">Cancelar</a>
-    </div>
-</form>
 
-<div>
-    <a asp-action="Index">Registro Horas</a>
-</div>
+
 
