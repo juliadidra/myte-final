@@ -19,7 +19,7 @@
 .itens-dash {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
     text-align: center;
     padding: 1rem;
